@@ -1,0 +1,63 @@
+---
+import '../styles/global.css'
+
+export interface Props {
+  title: string
+  description?: string
+  lang?: 'de' | 'en'
+  canonical?: string
+}
+
+const {
+  title,
+  description = 'Clokki – Zeiterfassung, Überstunden und Urlaubsverwaltung für deutsche Teams. DSGVO-konform und einfach zu bedienen.',
+  lang = 'de',
+  canonical,
+} = Astro.props
+
+const siteUrl = Astro.site?.toString() ?? 'https://clokki.de'
+---
+
+<!doctype html>
+<html lang={lang} class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Clokki" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical ?? siteUrl} />
+    <meta property="og:locale" content={lang === 'de' ? 'de_DE' : 'en_US'} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111827" media="(prefers-color-scheme: dark)" />
+
+    <script is:inline>
+      ;(() => {
+        try {
+          const stored = localStorage.getItem('theme')
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isDark =
+            stored === 'dark' ||
+            (stored === 'system' && prefersDark) ||
+            (!stored && prefersDark)
+          if (isDark) document.documentElement.classList.add('dark')
+        } catch {}
+      })()
+    </script>
+  </head>
+  <body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 antialiased">
+    <slot />
+  </body>
+</html>
