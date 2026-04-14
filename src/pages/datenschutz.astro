@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<BaseLayout
+  title="Datenschutzerklärung – Clokki"
+  description="Informationen zur Verarbeitung personenbezogener Daten auf clokki.de gemäß DSGVO."
+  lang="de"
+  canonical="https://clokki.de/datenschutz"
+>
+  <Header />
+  <main class="py-16 sm:py-20">
+    <article class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-gray-700 dark:text-gray-300 leading-relaxed">
+      <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+        Datenschutzerklärung
+      </h1>
+      <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+        Stand: [Datum einfügen]
+      </p>
+
+      <p class="mt-8">
+        Diese Datenschutzerklärung informiert dich über Art, Umfang und Zweck der Verarbeitung personenbezogener Daten auf <strong>clokki.de</strong> (nachfolgend „Website"). Grundlage ist die Datenschutz-Grundverordnung (DSGVO) sowie das Bundesdatenschutzgesetz (BDSG).
+      </p>
+
+      <section class="mt-10">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">1. Verantwortliche Stelle</h2>
+        <p class="mt-3">
+          Verantwortlich im Sinne der DSGVO ist:
+        </p>
+        <address class="mt-3 not-italic">
+          [Vollständiger Name]<br />
+          [Straße und Hausnummer]<br />
+          [PLZ] [Ort]<br />
+          E-Mail: [E-Mail-Adresse]
+        </address>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">2. Umfang der Datenverarbeitung</h2>
+        <p class="mt-3">
+          Diese Website ist ein reines Informations- und Vorregistrierungsangebot. Wir erheben grundsätzlich nur diejenigen Daten, die technisch für den Betrieb notwendig sind oder die du uns aktiv mitteilst.
+        </p>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">3. Server-Logfiles</h2>
+        <p class="mt-3">
+          Beim Aufruf der Website werden vom Hostinganbieter automatisch Zugriffsdaten in Server-Logfiles gespeichert:
+        </p>
+        <ul class="mt-3 ml-5 list-disc space-y-1">
+          <li>anonymisierte IP-Adresse</li>
+          <li>Datum und Uhrzeit des Zugriffs</li>
+          <li>aufgerufene Seite</li>
+          <li>verwendeter Browser und Betriebssystem</li>
+          <li>Referrer (die zuvor besuchte Seite)</li>
+        </ul>
+        <p class="mt-3">
+          Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren Betrieb). Die Daten werden spätestens nach 14 Tagen gelöscht.
+        </p>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">4. Lokaler Speicher (localStorage)</h2>
+        <p class="mt-3">
+          Wir nutzen den lokalen Speicher deines Browsers (<code class="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-[0.875em]">localStorage</code>), um deine Theme-Präferenz (Hell/Dunkel) zu speichern. Diese Information verlässt dein Gerät nicht und wird nicht an uns oder Dritte übertragen. Du kannst den Eintrag jederzeit in den Browser-Einstellungen löschen.
+        </p>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">5. Kontaktaufnahme per E-Mail</h2>
+        <p class="mt-3">
+          Wenn du uns per E-Mail oder über die Warteliste kontaktierst, verarbeiten wir deine E-Mail-Adresse und den Nachrichteninhalt zur Bearbeitung deiner Anfrage (Art. 6 Abs. 1 lit. b bzw. f DSGVO). Deine Daten werden gelöscht, sobald die Anfrage abschließend bearbeitet ist – spätestens jedoch, wenn kein berechtigtes Interesse an der Speicherung mehr besteht.
+        </p>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">6. Keine Cookies, kein Tracking</h2>
+        <p class="mt-3">
+          Diese Website setzt keine Cookies und verwendet weder Analyse-Tools (wie Google Analytics) noch Werbe- oder Tracking-Dienste. Es werden auch keine Inhalte Dritter (z.&nbsp;B. eingebettete Videos, Social-Media-Widgets) geladen, die deine Daten an externe Server übertragen würden.
+        </p>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">7. Deine Rechte</h2>
+        <p class="mt-3">
+          Du hast gegenüber der verantwortlichen Stelle folgende Rechte hinsichtlich der dich betreffenden personenbezogenen Daten:
+        </p>
+        <ul class="mt-3 ml-5 list-disc space-y-1">
+          <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
+          <li>Recht auf Berichtigung oder Löschung (Art. 16, 17 DSGVO)</li>
+          <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+          <li>Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+          <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+          <li>Recht auf Beschwerde bei einer Aufsichtsbehörde</li>
+        </ul>
+        <p class="mt-3">
+          Zur Ausübung deiner Rechte reicht eine formlose E-Mail an die oben genannte Kontaktadresse.
+        </p>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">8. Änderungen dieser Datenschutzerklärung</h2>
+        <p class="mt-3">
+          Wir passen diese Erklärung an, falls sich rechtliche oder technische Rahmenbedingungen ändern. Die jeweils aktuelle Version findest du auf dieser Seite.
+        </p>
+      </section>
+
+      <aside class="mt-12 rounded-lg border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 p-4 text-xs text-amber-800 dark:text-amber-200">
+        <strong>Hinweis:</strong> Diese Datenschutzerklärung wurde für den aktuellen Funktionsumfang der Website (rein statisch, keine Cookies, keine Analyse) erstellt. Sie muss angepasst werden, sobald neue Funktionen (Login, Analytics, Formulare mit Speicherung) ergänzt werden. Platzhalter [&hellip;] sind vor Veröffentlichung auszufüllen.
+      </aside>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

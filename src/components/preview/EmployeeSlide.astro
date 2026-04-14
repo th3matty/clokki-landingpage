@@ -1,0 +1,88 @@
+---
+import Avatar from './Avatar.astro'
+
+const entries = [
+  { date: 'Heute', time: '09:00 – 17:30', lunch: '30 min', hours: '8,00h', overtime: null },
+  { date: 'Gestern', time: '08:30 – 17:00', lunch: '45 min', hours: '7,75h', overtime: null },
+  { date: 'Mo, 10. Apr', time: '09:00 – 18:00', lunch: '60 min', hours: '8,00h', overtime: '+0,50h' },
+]
+---
+
+<div class="bg-white dark:bg-gray-800">
+  <!-- Window chrome -->
+  <div class="flex items-center gap-2 px-4 py-2.5 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50">
+    <span class="w-2.5 h-2.5 rounded-full bg-red-400/70" aria-hidden="true"></span>
+    <span class="w-2.5 h-2.5 rounded-full bg-yellow-400/70" aria-hidden="true"></span>
+    <span class="w-2.5 h-2.5 rounded-full bg-green-400/70" aria-hidden="true"></span>
+    <span class="ml-3 text-xs text-gray-500 dark:text-gray-400">app.clokki.de / dashboard</span>
+  </div>
+
+  <div class="p-5 sm:p-6 space-y-5">
+    <!-- Welcome header -->
+    <div class="flex items-center justify-between gap-3">
+      <div class="min-w-0">
+        <h3 class="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100 truncate">
+          Willkommen zurück, Max!
+        </h3>
+        <p class="text-xs text-gray-500 dark:text-gray-400">Zeiten erfassen & Anträge verwalten</p>
+      </div>
+      <Avatar initials="MM" colorClass="bg-indigo-500 text-white" size="lg" />
+    </div>
+
+    <!-- Quick stats -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div class="rounded-lg border border-gray-200 dark:border-gray-700 p-3">
+        <div class="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400">Heute</div>
+        <div class="mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">8,00h</div>
+        <span class="mt-1 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">
+          <span class="w-1 h-1 rounded-full bg-green-500"></span> Erfüllt
+        </span>
+      </div>
+      <div class="rounded-lg border border-gray-200 dark:border-gray-700 p-3">
+        <div class="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400">Diese Woche</div>
+        <div class="mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">40,25h</div>
+        <div class="mt-2 h-1 rounded-full bg-gray-100 dark:bg-gray-700 overflow-hidden">
+          <div class="h-full w-full bg-green-500 rounded-full"></div>
+        </div>
+      </div>
+      <div class="rounded-lg border border-gray-200 dark:border-gray-700 p-3">
+        <div class="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400">Überstunden</div>
+        <div class="mt-1 text-xl font-semibold text-green-600 dark:text-green-400">+8,50h</div>
+        <div class="mt-1 text-[11px] text-gray-500 dark:text-gray-400">Saldo aktuell</div>
+      </div>
+      <div class="rounded-lg border border-gray-200 dark:border-gray-700 p-3">
+        <div class="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400">Resturlaub</div>
+        <div class="mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">12</div>
+        <div class="mt-1 text-[11px] text-gray-500 dark:text-gray-400">von 25 Tagen</div>
+      </div>
+    </div>
+
+    <!-- Recent entries -->
+    <div>
+      <div class="flex items-center justify-between mb-2">
+        <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Zeiteinträge</h4>
+        <div class="inline-flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          April 2026
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+      <ul class="divide-y divide-gray-200 dark:divide-gray-700 border border-gray-200 dark:border-gray-700 rounded-lg">
+        {entries.map((entry) => (
+          <li class="flex items-center justify-between gap-3 px-3 py-2.5 text-sm">
+            <div class="min-w-0 flex-1">
+              <div class="font-medium text-gray-900 dark:text-gray-100">{entry.date}</div>
+              <div class="text-xs text-gray-500 dark:text-gray-400">{entry.time} · {entry.lunch} Pause</div>
+            </div>
+            <div class="text-right flex-shrink-0">
+              <div class="font-medium text-gray-900 dark:text-gray-100">{entry.hours}</div>
+              {entry.overtime && (
+                <div class="text-xs text-green-600 dark:text-green-400">{entry.overtime} Überstunden</div>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>

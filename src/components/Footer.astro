@@ -14,18 +14,10 @@ const linkColumns = [
     ],
   },
   {
-    heading: 'Unternehmen',
-    links: [
-      { label: 'Über uns', href: '#' },
-      { label: 'Kontakt', href: 'mailto:hallo@clokki.de' },
-    ],
-  },
-  {
     heading: 'Rechtliches',
     links: [
       { label: 'Impressum', href: '/impressum' },
       { label: 'Datenschutz', href: '/datenschutz' },
-      { label: 'AGB', href: '/agb' },
     ],
   },
 ]
@@ -33,8 +25,8 @@ const linkColumns = [
 
 <footer class="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-      <div class="col-span-2 md:col-span-1">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+      <div class="sm:col-span-1">
         <Logo />
         <p class="mt-4 text-sm text-gray-600 dark:text-gray-400 max-w-xs">
           Zeiterfassung für deutsche Teams. Einfach, konform, transparent.
