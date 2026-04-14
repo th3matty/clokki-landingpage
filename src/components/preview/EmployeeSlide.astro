@@ -73,7 +73,9 @@ const entries = [
             <div class="mt-1.5 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
               <div class="h-full w-full bg-green-600 rounded-full"></div>
             </div>
-            <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">100% der Sollstunden</p>
+            <p class="text-[10px] text-green-600 dark:text-green-400 mt-0.5 font-medium">
+              +0,25h über Ziel
+            </p>
           </div>
         </div>
       </div>
@@ -87,15 +89,26 @@ const entries = [
             </svg>
           </div>
           <div class="min-w-0 flex-1">
-            <h4 class="text-xs font-medium text-gray-900 dark:text-gray-100">Dieser Monat</h4>
+            <div class="flex items-center justify-between gap-2">
+              <h4 class="text-xs font-medium text-gray-900 dark:text-gray-100">Monatsstunden</h4>
+              <div class="flex items-center gap-0.5 text-[10px] text-gray-500 dark:text-gray-400">
+                <button type="button" class="p-0.5 rounded hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="Vorheriger Monat">
+                  <svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <span class="min-w-[50px] text-center">Dieser Monat</span>
+                <button type="button" class="p-0.5 rounded text-gray-300 dark:text-gray-600 cursor-not-allowed" aria-label="Nächster Monat" disabled>
+                  <svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
             <div class="flex items-baseline gap-1.5 mt-0.5">
-              <span class="text-xl font-semibold text-gray-900 dark:text-gray-100">68,50h</span>
-              <span class="text-[11px] text-gray-500 dark:text-gray-400">/ 160,00h</span>
+              <span class="text-xl font-semibold text-gray-900 dark:text-gray-100">6,40h</span>
+              <span class="text-[11px] text-gray-500 dark:text-gray-400">/ 108,80h</span>
             </div>
-            <div class="mt-1.5 flex items-center gap-1 text-[10px] text-green-600 dark:text-green-400">
-              <span class="inline-block w-1 h-1 rounded-full bg-green-500"></span>
-              Überstunden-Saldo: +8,50h
+            <div class="mt-1.5 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+              <div class="h-full w-[6%] bg-purple-600 rounded-full"></div>
             </div>
+            <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">6% von erwarteten Stunden</p>
           </div>
         </div>
       </div>
