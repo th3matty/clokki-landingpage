@@ -2,15 +2,15 @@
 import Avatar from './Avatar.astro'
 
 const entries = [
-  { date: 'Heute', time: '09:00 – 17:30', lunch: '30 min', hours: '8,00h', overtime: null },
-  { date: 'Gestern', time: '08:30 – 17:00', lunch: '45 min', hours: '7,75h', overtime: null },
-  { date: 'Mo, 10. Apr', time: '09:00 – 18:00', lunch: '60 min', hours: '8,00h', overtime: '+0,50h' },
+  { date: 'Heute, 13. Apr', slots: [{ start: '09:00', end: '17:30', lunch: '30' }], total: '8,00h', over: null },
+  { date: 'Freitag, 10. Apr', slots: [{ start: '08:30', end: '17:00', lunch: '45' }], total: '7,75h', over: null },
+  { date: 'Donnerstag, 9. Apr', slots: [{ start: '09:00', end: '13:00', lunch: '0' }, { start: '14:00', end: '18:30', lunch: '0' }], total: '8,50h', over: '+0,50h' },
 ]
 ---
 
-<div class="bg-white dark:bg-gray-800">
+<div class="bg-gray-50 dark:bg-gray-900">
   <!-- Window chrome -->
-  <div class="flex items-center gap-2 px-4 py-2.5 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50">
+  <div class="flex items-center gap-2 px-4 py-2.5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
     <span class="w-2.5 h-2.5 rounded-full bg-red-400/70" aria-hidden="true"></span>
     <span class="w-2.5 h-2.5 rounded-full bg-yellow-400/70" aria-hidden="true"></span>
     <span class="w-2.5 h-2.5 rounded-full bg-green-400/70" aria-hidden="true"></span>
@@ -18,71 +18,133 @@ const entries = [
   </div>
 
   <div class="p-5 sm:p-6 space-y-5">
-    <!-- Welcome header -->
-    <div class="flex items-center justify-between gap-3">
-      <div class="min-w-0">
-        <h3 class="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100 truncate">
-          Willkommen zurück, Max!
-        </h3>
-        <p class="text-xs text-gray-500 dark:text-gray-400">Zeiten erfassen & Anträge verwalten</p>
-      </div>
-      <Avatar initials="MM" colorClass="bg-indigo-500 text-white" size="lg" />
-    </div>
-
-    <!-- Quick stats -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-      <div class="rounded-lg border border-gray-200 dark:border-gray-700 p-3">
-        <div class="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400">Heute</div>
-        <div class="mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">8,00h</div>
-        <span class="mt-1 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">
-          <span class="w-1 h-1 rounded-full bg-green-500"></span> Erfüllt
-        </span>
-      </div>
-      <div class="rounded-lg border border-gray-200 dark:border-gray-700 p-3">
-        <div class="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400">Diese Woche</div>
-        <div class="mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">40,25h</div>
-        <div class="mt-2 h-1 rounded-full bg-gray-100 dark:bg-gray-700 overflow-hidden">
-          <div class="h-full w-full bg-green-500 rounded-full"></div>
-        </div>
-      </div>
-      <div class="rounded-lg border border-gray-200 dark:border-gray-700 p-3">
-        <div class="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400">Überstunden</div>
-        <div class="mt-1 text-xl font-semibold text-green-600 dark:text-green-400">+8,50h</div>
-        <div class="mt-1 text-[11px] text-gray-500 dark:text-gray-400">Saldo aktuell</div>
-      </div>
-      <div class="rounded-lg border border-gray-200 dark:border-gray-700 p-3">
-        <div class="text-[11px] uppercase tracking-wide text-gray-500 dark:text-gray-400">Resturlaub</div>
-        <div class="mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">12</div>
-        <div class="mt-1 text-[11px] text-gray-500 dark:text-gray-400">von 25 Tagen</div>
-      </div>
-    </div>
-
-    <!-- Recent entries -->
+    <!-- Welcome Header -->
     <div>
-      <div class="flex items-center justify-between mb-2">
-        <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Zeiteinträge</h4>
-        <div class="inline-flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
-          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-          April 2026
-          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <div class="flex items-start justify-between gap-3">
+        <div class="min-w-0">
+          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 truncate">
+            Willkommen zurück, Max!
+          </h3>
+          <p class="mt-1 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+            Zeit erfassen, Anträge stellen und deinen Saldo im Blick behalten.
+          </p>
+        </div>
+        <Avatar initials="MM" colorClass="bg-indigo-500 text-white" size="lg" />
+      </div>
+    </div>
+
+    <!-- QuickStats (faithful to real QuickStats.vue: 3 cards, colored icon boxes, h-[140px]) -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+      <!-- Heute -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
+        <div class="flex items-start gap-3">
+          <div class="w-9 h-9 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="min-w-0 flex-1">
+            <h4 class="text-xs font-medium text-gray-900 dark:text-gray-100">Heute</h4>
+            <div class="flex items-baseline gap-1.5 mt-0.5">
+              <span class="text-xl font-semibold text-gray-900 dark:text-gray-100">8,00h</span>
+              <span class="text-[11px] text-gray-500 dark:text-gray-400">/ 8,00h</span>
+            </div>
+            <span class="mt-1 inline-flex px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">
+              Ziel erreicht
+            </span>
+          </div>
         </div>
       </div>
-      <ul class="divide-y divide-gray-200 dark:divide-gray-700 border border-gray-200 dark:border-gray-700 rounded-lg">
+
+      <!-- Woche -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
+        <div class="flex items-start gap-3">
+          <div class="w-9 h-9 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div class="min-w-0 flex-1">
+            <h4 class="text-xs font-medium text-gray-900 dark:text-gray-100">Diese Woche</h4>
+            <div class="flex items-baseline gap-1.5 mt-0.5">
+              <span class="text-xl font-semibold text-gray-900 dark:text-gray-100">40,25h</span>
+              <span class="text-[11px] text-gray-500 dark:text-gray-400">/ 40,00h</span>
+            </div>
+            <div class="mt-1.5 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+              <div class="h-full w-full bg-green-600 rounded-full"></div>
+            </div>
+            <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">100% der Sollstunden</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monat -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
+        <div class="flex items-start gap-3">
+          <div class="w-9 h-9 bg-purple-100 dark:bg-purple-900/20 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+          </div>
+          <div class="min-w-0 flex-1">
+            <h4 class="text-xs font-medium text-gray-900 dark:text-gray-100">Dieser Monat</h4>
+            <div class="flex items-baseline gap-1.5 mt-0.5">
+              <span class="text-xl font-semibold text-gray-900 dark:text-gray-100">68,50h</span>
+              <span class="text-[11px] text-gray-500 dark:text-gray-400">/ 160,00h</span>
+            </div>
+            <div class="mt-1.5 flex items-center gap-1 text-[10px] text-green-600 dark:text-green-400">
+              <span class="inline-block w-1 h-1 rounded-full bg-green-500"></span>
+              Überstunden-Saldo: +8,50h
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zeiteinträge (faithful: white bg, shadow, px-6 py-4 header, list with gray-50 rounded-lg items) -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+      <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+        <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">Letzte Zeiteinträge</h4>
+        <div class="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400">
+          <button type="button" class="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="Vorheriger Monat">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          <span class="min-w-[80px] text-center font-medium">April 2026</span>
+          <button type="button" class="p-1 rounded text-gray-300 dark:text-gray-600 cursor-not-allowed" aria-label="Nächster Monat" disabled>
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+      </div>
+      <div class="p-3 space-y-2">
         {entries.map((entry) => (
-          <li class="flex items-center justify-between gap-3 px-3 py-2.5 text-sm">
-            <div class="min-w-0 flex-1">
-              <div class="font-medium text-gray-900 dark:text-gray-100">{entry.date}</div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">{entry.time} · {entry.lunch} Pause</div>
+          <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-9 h-9 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div class="min-w-0 flex-1">
+                <p class="text-xs font-medium text-gray-900 dark:text-gray-100 truncate">{entry.date}</p>
+                <ul class="text-[11px] text-gray-500 dark:text-gray-400 space-y-0.5 mt-0.5">
+                  {entry.slots.map((slot) => (
+                    <li>
+                      {slot.start} – {slot.end}
+                      {slot.lunch !== '0' && <span class="ml-0.5">({slot.lunch} min Pause)</span>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div class="text-right flex-shrink-0">
-              <div class="font-medium text-gray-900 dark:text-gray-100">{entry.hours}</div>
-              {entry.overtime && (
-                <div class="text-xs text-green-600 dark:text-green-400">{entry.overtime} Überstunden</div>
-              )}
+            <div class="text-right flex-shrink-0 ml-3">
+              <p class="text-sm font-semibold text-gray-900 dark:text-gray-100">{entry.total}</p>
+              <p class="text-[11px] text-gray-500 dark:text-gray-400">
+                {entry.over ? <span class="text-green-600 dark:text-green-400">{entry.over} Überstunden</span> : <span>Gesamt</span>}
+              </p>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   </div>
 </div>

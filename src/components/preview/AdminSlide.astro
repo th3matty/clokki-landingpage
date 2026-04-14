@@ -2,34 +2,42 @@
 import Avatar from './Avatar.astro'
 
 const members = [
-  { name: 'Anna Schmidt', role: 'Designer', hours: '7,50h', color: 'bg-pink-500 text-white', initials: 'AS', status: 'on' },
-  { name: 'Tim Becker', role: 'Developer', hours: '8,00h', color: 'bg-amber-500 text-white', initials: 'TB', status: 'on' },
-  { name: 'Sophie Klein', role: 'PM', hours: '0,00h', color: 'bg-emerald-500 text-white', initials: 'SK', status: 'holiday' },
-  { name: 'Lars Weber', role: 'Developer', hours: '6,25h', color: 'bg-sky-500 text-white', initials: 'LW', status: 'late' },
+  { name: 'Anna Schmidt',   email: 'anna@team.de',   initials: 'AS', color: 'bg-pink-500 text-white',    role: 'Mitarbeiter', roleClass: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300',          status: 'Aktiv',      statusDot: 'bg-green-500', statusText: 'text-green-600 dark:text-green-400' },
+  { name: 'Tim Becker',     email: 'tim@team.de',    initials: 'TB', color: 'bg-amber-500 text-white',   role: 'Mitarbeiter', roleClass: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300',          status: 'Pause',      statusDot: 'bg-blue-500',  statusText: 'text-blue-600 dark:text-blue-400' },
+  { name: 'Sophie Klein',   email: 'sophie@team.de', initials: 'SK', color: 'bg-emerald-500 text-white', role: 'Manager',     roleClass: 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300',     status: 'Urlaub',     statusDot: 'bg-emerald-500', statusText: 'text-emerald-600 dark:text-emerald-400' },
+  { name: 'Lars Weber',     email: 'lars@team.de',   initials: 'LW', color: 'bg-sky-500 text-white',     role: 'Mitarbeiter', roleClass: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300',          status: 'Verspätet',  statusDot: 'bg-orange-500', statusText: 'text-orange-600 dark:text-orange-400' },
 ]
 
 const activities = [
-  { text: 'Anna hat 3 Tage Urlaub beantragt', time: 'vor 2 Std.', color: 'bg-blue-500' },
-  { text: 'Tim hat Zeiteintrag korrigiert', time: 'vor 4 Std.', color: 'bg-orange-500' },
-  { text: 'Sophie ist im Urlaub bis 24. Apr', time: 'gestern', color: 'bg-green-500' },
-  { text: 'Lars hat Überstunden-Auszahlung angefragt', time: 'gestern', color: 'bg-blue-500' },
+  {
+    initials: 'AS', color: 'bg-pink-500 text-white', emoji: '🏖️', iconBg: 'bg-blue-100 dark:bg-blue-900/30',
+    name: 'Anna Schmidt',
+    message: 'hat einen Urlaubsantrag eingereicht',
+    dateRange: '22. Apr – 24. Apr · 3 Tage',
+    reason: '"Familienbesuch"',
+    time: 'vor 2 Std.',
+  },
+  {
+    initials: 'TB', color: 'bg-amber-500 text-white', emoji: '⏰', iconBg: 'bg-purple-100 dark:bg-purple-900/30',
+    name: 'Tim Becker',
+    message: 'hat einen Zeiteintrag korrigiert',
+    dateRange: '15. Apr · 09:00 – 18:30',
+    reason: null,
+    time: 'vor 4 Std.',
+  },
+  {
+    initials: 'SK', color: 'bg-emerald-500 text-white', emoji: '💸', iconBg: 'bg-green-100 dark:bg-green-900/30',
+    name: 'Sophie Klein',
+    message: 'hat eine Überstunden-Auszahlung angefragt',
+    dateRange: '8 Stunden · 420 €',
+    reason: null,
+    time: 'gestern',
+  },
 ]
-
-const statusDot = {
-  on: 'bg-green-500',
-  holiday: 'bg-emerald-500',
-  late: 'bg-orange-500',
-}
-
-const statusLabel = {
-  on: 'Aktiv',
-  holiday: 'Urlaub',
-  late: 'Verspätet',
-}
 ---
 
-<div class="bg-white dark:bg-gray-800">
-  <div class="flex items-center gap-2 px-4 py-2.5 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50">
+<div class="bg-gray-50 dark:bg-gray-900">
+  <div class="flex items-center gap-2 px-4 py-2.5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
     <span class="w-2.5 h-2.5 rounded-full bg-red-400/70" aria-hidden="true"></span>
     <span class="w-2.5 h-2.5 rounded-full bg-yellow-400/70" aria-hidden="true"></span>
     <span class="w-2.5 h-2.5 rounded-full bg-green-400/70" aria-hidden="true"></span>
@@ -37,63 +45,96 @@ const statusLabel = {
   </div>
 
   <div class="p-5 sm:p-6 space-y-5">
-    <!-- Header with stat pills -->
+    <!-- Admin header with pending-requests pill on right (matches AdminView.vue) -->
     <div class="flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h3 class="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100">Admin-Dashboard</h3>
-        <p class="text-xs text-gray-500 dark:text-gray-400">Team, Genehmigungen & Compliance</p>
+        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Admin-Dashboard</h3>
+        <p class="mt-1 text-xs sm:text-sm text-gray-600 dark:text-gray-400">Team, Genehmigungen & Compliance verwalten</p>
       </div>
-      <div class="flex items-center gap-2">
-        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
-          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          4 Mitglieder
-        </span>
-        <span class="relative inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300">
-          <span class="relative flex w-1.5 h-1.5">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full w-1.5 h-1.5 bg-orange-500"></span>
-          </span>
-          3 offen
-        </span>
+      <div class="flex items-center gap-6 text-xs">
+        <div class="text-center">
+          <div class="text-lg font-bold text-gray-900 dark:text-gray-100">4</div>
+          <div class="text-[10px] text-gray-500 dark:text-gray-400">Mitglieder</div>
+        </div>
+        <div class="text-center">
+          <div class="relative inline-block px-3 py-1.5 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm">
+            <div class="text-lg font-bold text-orange-600 dark:text-orange-400">3</div>
+            <div class="text-[10px] text-gray-500 dark:text-gray-400">Offene Anträge</div>
+            <span class="absolute top-1 right-1 flex w-2 h-2">
+              <span class="animate-ping absolute inline-flex w-full h-full rounded-full bg-orange-400 opacity-75"></span>
+              <span class="relative inline-flex w-2 h-2 rounded-full bg-orange-500"></span>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- 2/3 + 1/3 grid -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-      <!-- Team members (2/3) -->
-      <div class="lg:col-span-2">
-        <div class="flex items-center justify-between mb-2">
-          <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Team-Mitglieder</h4>
-          <span class="text-xs text-gray-500 dark:text-gray-400">Heute</span>
+      <!-- Team members card -->
+      <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+          <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">Team-Mitglieder</h4>
+          <span class="text-xs text-gray-500 dark:text-gray-400">4 Personen</span>
         </div>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div class="p-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
           {members.map((m) => (
-            <li class="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700">
-              <Avatar initials={m.initials} colorClass={m.color} size="md" />
-              <div class="min-w-0 flex-1">
-                <div class="flex items-center gap-2">
-                  <span class="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">{m.name}</span>
-                  <span class:list={['w-1.5 h-1.5 rounded-full flex-shrink-0', statusDot[m.status as keyof typeof statusDot]]} aria-hidden="true"></span>
+            <div class="rounded-xl border border-gray-200 dark:border-gray-700 p-3 hover:border-blue-300 dark:hover:border-blue-600 transition-colors">
+              <div class="flex items-start gap-3">
+                <!-- Avatar with status dot -->
+                <div class="relative flex-shrink-0">
+                  <Avatar initials={m.initials} colorClass={m.color} size="lg" />
+                  <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center">
+                    <span class:list={['w-2 h-2 rounded-full', m.statusDot]} aria-hidden="true"></span>
+                  </span>
                 </div>
-                <div class="text-[11px] text-gray-500 dark:text-gray-400 truncate">{m.role} · {statusLabel[m.status as keyof typeof statusLabel]}</div>
+                <div class="min-w-0 flex-1">
+                  <div class="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">{m.name}</div>
+                  <div class="flex items-center gap-1.5 mt-0.5">
+                    <span class:list={['text-[10px] px-1.5 py-0.5 rounded-full', m.roleClass]}>
+                      {m.role}
+                    </span>
+                    <span class:list={['inline-flex items-center gap-1 text-[10px]', m.statusText]}>
+                      <span class:list={['w-1 h-1 rounded-full', m.statusDot]}></span>
+                      {m.status}
+                    </span>
+                  </div>
+                  <p class="text-[10px] text-gray-500 dark:text-gray-400 truncate mt-0.5">{m.email}</p>
+                </div>
               </div>
-              <div class="text-right flex-shrink-0">
-                <div class="text-sm font-medium text-gray-900 dark:text-gray-100">{m.hours}</div>
-              </div>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
 
-      <!-- Activity feed (1/3) -->
-      <div>
-        <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">Aktivität</h4>
-        <ul class="space-y-2">
+      <!-- Activity feed (matches ActivityFeed.vue: rounded-full emoji icons, name + message + metadata) -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+          <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">Aktivität</h4>
+          <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700">
+            <svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M23 4v6h-6 M1 20v-6h6 M3.51 9a9 9 0 0 1 14.85-3.36L23 10 M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            Aktualisieren
+          </span>
+        </div>
+        <ul class="divide-y divide-gray-200 dark:divide-gray-700">
           {activities.map((a) => (
-            <li class="flex items-start gap-2.5 px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-900/40">
-              <span class:list={['flex-shrink-0 w-1.5 h-1.5 rounded-full mt-1.5', a.color]} aria-hidden="true"></span>
-              <div class="min-w-0 flex-1">
-                <p class="text-xs text-gray-700 dark:text-gray-200 leading-snug">{a.text}</p>
-                <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">{a.time}</p>
+            <li class="p-3">
+              <div class="flex items-start gap-2.5">
+                <span class:list={['w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm', a.iconBg]} aria-hidden="true">
+                  {a.emoji}
+                </span>
+                <div class="min-w-0 flex-1">
+                  <p class="text-xs font-medium text-gray-900 dark:text-gray-100">{a.name}</p>
+                  <p class="text-[11px] text-gray-600 dark:text-gray-400 leading-snug">{a.message}</p>
+                  <div class="mt-1 inline-flex items-center gap-1 text-[10px] text-gray-500 dark:text-gray-400">
+                    <svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <span class="font-medium">{a.dateRange}</span>
+                  </div>
+                  {a.reason && (
+                    <p class="mt-1 text-[10px] italic text-orange-600 dark:text-orange-300">{a.reason}</p>
+                  )}
+                  <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">{a.time}</p>
+                </div>
               </div>
             </li>
           ))}
