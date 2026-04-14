@@ -1,28 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import ThemeToggle from '../components/ThemeToggle.vue'
+import Header from '../components/Header.astro'
+import Hero from '../components/Hero.astro'
+import FeaturesGrid from '../components/FeaturesGrid.astro'
+import HowItWorks from '../components/HowItWorks.astro'
+import ComplianceCard from '../components/ComplianceCard.astro'
+import FinalCta from '../components/FinalCta.astro'
+import Footer from '../components/Footer.astro'
 ---
 
-<BaseLayout title="Clokki – Smoke Test" lang="de">
-  <main class="min-h-screen flex flex-col items-center justify-center p-8 gap-8">
-    <header class="w-full max-w-3xl flex items-center justify-between">
-      <span class="text-lg font-semibold">Clokki</span>
-      <ThemeToggle client:load />
-    </header>
-
-    <section class="w-full max-w-3xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 shadow">
-      <h1 class="text-2xl font-semibold mb-2">Phase 2 Smoke Test</h1>
-      <p class="text-sm text-gray-600 dark:text-gray-300">
-        Inter font, dark-mode toggle, design tokens working. Real landing page comes in Phase 3.
-      </p>
-      <div class="mt-4 flex gap-3">
-        <button class="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-          Primary Button
-        </button>
-        <button class="px-4 py-2 text-sm font-medium bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-          Secondary
-        </button>
-      </div>
-    </section>
+<BaseLayout
+  title="Clokki – Zeiterfassung für deutsche Teams"
+  description="Zeiterfassung, Überstunden und Urlaubsverwaltung. DSGVO-konform und kompatibel mit dem deutschen Arbeitsrecht. Made in Germany."
+  lang="de"
+  canonical="https://clokki.de/"
+>
+  <Header />
+  <main>
+    <Hero />
+    <FeaturesGrid />
+    <HowItWorks />
+    <ComplianceCard />
+    <FinalCta />
   </main>
+  <Footer />
 </BaseLayout>
