@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "indexTitle": "Clokki – Time tracking for German teams",
+    "indexDescription": "Time tracking, overtime and holidays. GDPR-compliant and built for German labor law. Made in Germany.",
+    "soonTitle": "Clokki – Coming soon",
+    "soonDescription": "Clokki launches soon. Join the waitlist and be there from day one."
+  },
+  "header": {
+    "features": "Features",
+    "howItWorks": "How it works",
+    "compliance": "Compliance",
+    "login": "Sign in",
+    "homeAria": "Clokki – Home",
+    "navAria": "Main navigation"
+  },
+  "hero": {
+    "title": "Time tracking teams actually use.",
+    "subtitle": "Overtime, holidays and sick leave – GDPR-compliant and built for German labor law.",
+    "ctaPrimary": "Join the waitlist",
+    "ctaSecondary": "See features",
+    "trust": [
+      "Made in Germany",
+      "All 16 German states",
+      "GDPR-compliant"
+    ]
+  },
+  "preview": {
+    "ariaLabel": "Product preview",
+    "tablistAria": "Switch view",
+    "sliderAria": "Preview slider",
+    "tabs": {
+      "employee": "Employee",
+      "employeeSr": "Employee dashboard",
+      "admin": "Admin",
+      "adminSr": "Admin overview",
+      "requests": "Approvals",
+      "requestsSr": "Manage requests"
+    }
+  },
+  "features": {
+    "title": "Everything that matters",
+    "subtitle": "Six features that replace your spreadsheet.",
+    "items": {
+      "time": {
+        "title": "Time tracking",
+        "description": "Start, end and breaks per day. Fix past entries through a request workflow with approvals."
+      },
+      "overtime": {
+        "title": "Overtime",
+        "description": "Automatic calculation with deficit logic. Weekend hours cover weekly shortfalls before counting as overtime."
+      },
+      "holidays": {
+        "title": "Holiday management",
+        "description": "Request time off, see your balance. Convert overtime into holiday days."
+      },
+      "sick": {
+        "title": "Sick leave",
+        "description": "Personal and family sick days – counted as worked hours under §3 EFZG (German labor law)."
+      },
+      "notifications": {
+        "title": "Real-time notifications",
+        "description": "Approvals, alerts and status changes appear instantly in the bell icon."
+      },
+      "admin": {
+        "title": "Admin dashboard",
+        "description": "Team overview, CSV/Excel export and flexible contract changes – all in one place."
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "Set up in three steps",
+    "subtitle": "From first click to first time entry in under five minutes.",
+    "steps": [
+      {
+        "title": "Create your team",
+        "description": "Set up an account, pick your German state – public holidays and compliance are configured automatically."
+      },
+      {
+        "title": "Invite members",
+        "description": "Share a team ID or invite by email. Roles for employees and admins."
+      },
+      {
+        "title": "Get going",
+        "description": "Log hours, submit requests, manage approvals – all in one place."
+      }
+    ]
+  },
+  "compliance": {
+    "title": "Compliant with German labor law",
+    "subtitle": "Built for the requirements of German companies – without legal pitfalls.",
+    "points": [
+      "All 16 German states and their public holidays",
+      "Continued pay during illness (§3 EFZG)",
+      "Flexible contracts: part-time, 4-day weeks, variable hours",
+      "GDPR-compliant data storage in the EU"
+    ]
+  },
+  "finalCta": {
+    "title": "Ready to say goodbye to spreadsheets?",
+    "subtitle": "Clokki launches soon. Grab one of the early spots and we'll notify you at launch.",
+    "button": "Join the waitlist"
+  },
+  "footer": {
+    "tagline": "Time tracking for German teams. Simple, compliant, transparent.",
+    "columnProduct": "Product",
+    "columnLegal": "Legal",
+    "copyright": "Made with ♥ in Germany",
+    "languageSwitchAria": "Switch language"
+  },
+  "soon": {
+    "badge": "Coming soon",
+    "title": "We're putting on the finishing touches.",
+    "subtitle": "Clokki launches in the next few weeks. Drop us a line – we'll get in touch the moment you can get started. No newsletter, no marketing.",
+    "ctaPrimary": "Join the waitlist",
+    "ctaSecondary": "Back to home",
+    "mailtoSubject": "Join the waitlist",
+    "mailtoBody": "Hi Clokki team,\n\nI'd like to join the waitlist.\n\nTeam size: \nGerman state: \n\nThanks!",
+    "fineprint": "Opens your email client. We only store your address to notify you at launch."
+  }
+}

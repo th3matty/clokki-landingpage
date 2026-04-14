@@ -1,20 +1,27 @@
 ---
 import Logo from './Logo.astro'
 import ThemeToggle from './ThemeToggle.vue'
+import { createT, type Lang } from '../lib/i18n'
 
+interface Props {
+  lang?: Lang
+}
+const { lang = 'de' } = Astro.props
+const t = createT(lang)
 const currentYear = new Date().getFullYear()
+const home = lang === 'en' ? '/en/' : '/'
 
 const linkColumns = [
   {
-    heading: 'Produkt',
+    heading: t('footer.columnProduct'),
     links: [
-      { label: 'Funktionen', href: '/#funktionen' },
-      { label: 'Ablauf', href: '/#ablauf' },
-      { label: 'Compliance', href: '/#compliance' },
+      { label: t('header.features'), href: `${home}#funktionen` },
+      { label: t('header.howItWorks'), href: `${home}#ablauf` },
+      { label: t('header.compliance'), href: `${home}#compliance` },
     ],
   },
   {
-    heading: 'Rechtliches',
+    heading: t('footer.columnLegal'),
     links: [
       { label: 'Impressum', href: '/impressum' },
       { label: 'Datenschutz', href: '/datenschutz' },
@@ -27,9 +34,9 @@ const linkColumns = [
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
       <div class="sm:col-span-1">
-        <Logo />
+        <Logo lang={lang} />
         <p class="mt-4 text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-          Zeiterfassung für deutsche Teams. Einfach, konform, transparent.
+          {t('footer.tagline')}
         </p>
       </div>
       {linkColumns.map((column) => (
@@ -53,14 +60,34 @@ const linkColumns = [
 
     <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
       <p class="text-sm text-gray-500 dark:text-gray-400">
-        © {currentYear} Clokki · Made with ♥ in Germany
+        © {currentYear} Clokki · {t('footer.copyright')}
       </p>
-      <div class="flex items-center gap-3">
-        <a href="/en" class="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors" hreflang="en">
+      <div class="flex items-center gap-3" aria-label={t('footer.languageSwitchAria')}>
+        <a
+          href="/en/"
+          class:list={[
+            'text-sm transition-colors',
+            lang === 'en'
+              ? 'font-medium text-gray-900 dark:text-gray-100'
+              : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100',
+          ]}
+          aria-current={lang === 'en' ? 'page' : undefined}
+          hreflang="en"
+        >
           EN
         </a>
         <span class="text-gray-300 dark:text-gray-700" aria-hidden="true">·</span>
-        <a href="/" class="text-sm font-medium text-gray-900 dark:text-gray-100" aria-current="page" hreflang="de">
+        <a
+          href="/"
+          class:list={[
+            'text-sm transition-colors',
+            lang === 'de'
+              ? 'font-medium text-gray-900 dark:text-gray-100'
+              : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100',
+          ]}
+          aria-current={lang === 'de' ? 'page' : undefined}
+          hreflang="de"
+        >
           DE
         </a>
         <span class="text-gray-300 dark:text-gray-700 ml-2" aria-hidden="true">|</span>

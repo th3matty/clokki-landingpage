@@ -2,18 +2,24 @@
 import EmployeeSlide from './preview/EmployeeSlide.astro'
 import AdminSlide from './preview/AdminSlide.astro'
 import RequestsSlide from './preview/RequestsSlide.astro'
+import { createT, type Lang } from '../lib/i18n'
+
+interface Props {
+  lang?: Lang
+}
+const { lang = 'de' } = Astro.props
+const t = createT(lang)
 
 const slides = [
-  { id: 'preview-employee', label: 'Mitarbeiter', sr: 'Mitarbeiter-Dashboard' },
-  { id: 'preview-admin', label: 'Admin', sr: 'Admin-Übersicht' },
-  { id: 'preview-requests', label: 'Genehmigungen', sr: 'Anfragen verwalten' },
+  { id: 'preview-employee', label: t('preview.tabs.employee'), sr: t('preview.tabs.employeeSr') },
+  { id: 'preview-admin',    label: t('preview.tabs.admin'),    sr: t('preview.tabs.adminSr') },
+  { id: 'preview-requests', label: t('preview.tabs.requests'), sr: t('preview.tabs.requestsSr') },
 ]
 ---
 
-<section aria-label="Produktvorschau" class="mx-auto max-w-5xl">
+<section aria-label={t('preview.ariaLabel')} class="mx-auto max-w-5xl">
   <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl overflow-hidden">
-    <!-- Tab bar -->
-    <div role="tablist" aria-label="Ansicht wechseln" class="flex items-center gap-1 px-3 py-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 overflow-x-auto">
+    <div role="tablist" aria-label={t('preview.tablistAria')} class="flex items-center gap-1 px-3 py-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 overflow-x-auto">
       {slides.map((slide, i) => (
         <button
           type="button"
@@ -35,12 +41,11 @@ const slides = [
       ))}
     </div>
 
-    <!-- Scroll-snap slider -->
     <div
       id="preview-slider"
       class="preview-slider flex overflow-x-auto snap-x snap-mandatory scroll-smooth"
       tabindex="0"
-      aria-label="Vorschau-Slider"
+      aria-label={t('preview.sliderAria')}
     >
       {slides.map((slide) => (
         <div
@@ -57,7 +62,6 @@ const slides = [
     </div>
   </div>
 
-  <!-- Dot indicators -->
   <div class="mt-4 flex items-center justify-center gap-2" aria-hidden="true">
     {slides.map((_, i) => (
       <span

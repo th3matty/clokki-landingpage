@@ -1,31 +1,25 @@
 ---
-const steps = [
-  {
-    number: 1,
-    title: 'Team anlegen',
-    description: 'Account erstellen, Bundesland wählen – Feiertage und Compliance werden automatisch konfiguriert.',
-  },
-  {
-    number: 2,
-    title: 'Mitglieder einladen',
-    description: 'Team-ID teilen oder Mitglieder per E-Mail einladen. Rollen für Mitarbeiter und Admins.',
-  },
-  {
-    number: 3,
-    title: 'Loslegen',
-    description: 'Zeiten erfassen, Anträge stellen, Genehmigungen verwalten – alles an einem Ort.',
-  },
-]
+import { createT, type Lang } from '../lib/i18n'
+import de from '../i18n/de.json'
+import en from '../i18n/en.json'
+
+interface Props {
+  lang?: Lang
+}
+const { lang = 'de' } = Astro.props
+const t = createT(lang)
+const dict = lang === 'en' ? en : de
+const steps = dict.howItWorks.steps
 ---
 
 <section id="ablauf" class="py-16 sm:py-20 lg:py-24 border-t border-gray-200 dark:border-gray-800">
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
-        In drei Schritten startklar
+        {t('howItWorks.title')}
       </h2>
       <p class="mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-300">
-        Vom ersten Klick bis zur ersten Zeitbuchung in unter fünf Minuten.
+        {t('howItWorks.subtitle')}
       </p>
     </div>
 
@@ -33,7 +27,7 @@ const steps = [
       {steps.map((step, index) => (
         <li class="relative flex flex-col items-center text-center">
           <div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 text-white text-lg font-semibold shadow">
-            {step.number}
+            {index + 1}
           </div>
           {index < steps.length - 1 && (
             <span class="hidden md:block absolute top-6 left-[calc(50%+1.5rem+1rem)] w-[calc(100%-3rem-2rem)] h-px bg-gray-200 dark:bg-gray-700" aria-hidden="true"></span>

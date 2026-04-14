@@ -1,36 +1,19 @@
 ---
+import { createT, type Lang } from '../lib/i18n'
+
+interface Props {
+  lang?: Lang
+}
+const { lang = 'de' } = Astro.props
+const t = createT(lang)
+
 const features = [
-  {
-    title: 'Zeiterfassung',
-    description: 'Start, Ende und Pausen pro Tag. Vergangene Tage per Antrag korrigieren – mit Genehmigungsworkflow.',
-    iconPath: 'M12 6v6l4 2',
-    iconCircle: true,
-  },
-  {
-    title: 'Überstunden',
-    description: 'Automatische Berechnung mit Defizit-Logik. Wochenenden gleichen Wochenstunden aus, bevor sie als Überstunden zählen.',
-    iconPath: 'M3 3v18h18 M9 17V9 M13 17V5 M17 17v-3',
-  },
-  {
-    title: 'Urlaubsverwaltung',
-    description: 'Anträge stellen, Resturlaub im Blick. Überstunden lassen sich in Urlaubstage umwandeln.',
-    iconPath: 'M8 2v4 M16 2v4 M3 10h18 M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z',
-  },
-  {
-    title: 'Krankentage',
-    description: 'Eigene und Familien-Krankentage. Nach §3 EFZG automatisch als Arbeitszeit gewertet.',
-    iconPath: 'M22 12h-4l-3 9L9 3l-3 9H2',
-  },
-  {
-    title: 'Echtzeit-Benachrichtigungen',
-    description: 'Genehmigungen, Hinweise und Statusänderungen erscheinen sofort im Glocken-Icon.',
-    iconPath: 'M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9 M10.3 21a1.94 1.94 0 0 0 3.4 0',
-  },
-  {
-    title: 'Admin-Dashboard',
-    description: 'Team-Übersicht, CSV/Excel-Export und flexible Vertragsänderungen – alles an einem Ort.',
-    iconPath: 'M3 3h7v7H3z M14 3h7v7h-7z M14 14h7v7h-7z M3 14h7v7H3z',
-  },
+  { key: 'time',          iconPath: 'M12 6v6l4 2',                                  iconCircle: true },
+  { key: 'overtime',      iconPath: 'M3 3v18h18 M9 17V9 M13 17V5 M17 17v-3' },
+  { key: 'holidays',      iconPath: 'M8 2v4 M16 2v4 M3 10h18 M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z' },
+  { key: 'sick',          iconPath: 'M22 12h-4l-3 9L9 3l-3 9H2' },
+  { key: 'notifications', iconPath: 'M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9 M10.3 21a1.94 1.94 0 0 0 3.4 0' },
+  { key: 'admin',         iconPath: 'M3 3h7v7H3z M14 3h7v7h-7z M14 14h7v7h-7z M3 14h7v7H3z' },
 ]
 ---
 
@@ -38,10 +21,10 @@ const features = [
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl text-center">
       <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
-        Alles drin, was zählt
+        {t('features.title')}
       </h2>
       <p class="mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-300">
-        Sechs Funktionen, die deine Stundenlisten ablösen.
+        {t('features.subtitle')}
       </p>
     </div>
 
@@ -54,8 +37,8 @@ const features = [
               <path d={feature.iconPath} />
             </svg>
           </div>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">{feature.title}</h3>
-          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{feature.description}</p>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">{t(`features.items.${feature.key}.title`)}</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{t(`features.items.${feature.key}.description`)}</p>
         </article>
       ))}
     </div>
