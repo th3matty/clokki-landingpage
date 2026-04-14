@@ -7,7 +7,20 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [vue(), sitemap()],
+  site: 'https://clokki.de',
+  trailingSlash: 'ignore',
+  integrations: [
+    vue(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'de',
+        locales: {
+          de: 'de-DE',
+          en: 'en-US',
+        },
+      },
+    }),
+  ],
 
   vite: {
     plugins: [tailwindcss()]
