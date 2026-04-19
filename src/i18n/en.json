@@ -3,12 +3,15 @@
     "indexTitle": "Clokki – Time tracking for German teams",
     "indexDescription": "Time tracking, overtime and holidays. GDPR-compliant and built for German labor law. Made in Germany.",
     "soonTitle": "Clokki – Coming soon",
-    "soonDescription": "Clokki launches soon. Join the waitlist and be there from day one."
+    "soonDescription": "Clokki launches soon. Join the waitlist and be there from day one.",
+    "pricingTitle": "Clokki – Pricing",
+    "pricingDescription": "Transparent pricing for German teams – no setup fee, no minimum term. Final numbers at launch."
   },
   "header": {
     "features": "Features",
     "howItWorks": "How it works",
     "compliance": "Compliance",
+    "pricing": "Pricing",
     "login": "Sign in",
     "homeAria": "Clokki – Home",
     "navAria": "Main navigation"
@@ -99,6 +102,92 @@
     "title": "Ready to say goodbye to spreadsheets?",
     "subtitle": "Clokki launches soon. Grab one of the early spots and we'll notify you at launch.",
     "button": "Join the waitlist"
+  },
+  "pricing": {
+    "badge": "Pricing at launch",
+    "title": "Simple pricing. No surprises.",
+    "subtitle": "Transparent, no setup fee, no minimum term. Final numbers will be announced at launch.",
+    "priceFallback": "Coming soon",
+    "priceSuffix": "per user / month",
+    "tiers": {
+      "team": {
+        "name": "Team",
+        "tagline": "For teams ready to retire their spreadsheets.",
+        "recommended": "Recommended",
+        "ctaLabel": "Join the waitlist",
+        "features": [
+          "Time tracking with breaks & multiple blocks per day",
+          "Overtime account with deficit logic & weekly balancing",
+          "Overtime payouts with full history",
+          "Holidays, sick days & family sick days",
+          "Overtime-funded vacation days",
+          "All 16 German states – public holidays automatic",
+          "Custom company holidays",
+          "§3 & §4 ArbZG compliance alerts",
+          "Scheduled contract changes with impact preview",
+          "Admin dashboard with approval workflow",
+          "CSV & Excel export with summaries",
+          "Dark mode, German & English",
+          "GDPR-compliant, data in the EU",
+          "Email support"
+        ]
+      },
+      "business": {
+        "name": "Business",
+        "tagline": "For growing companies with enterprise requirements.",
+        "priceNote": "Custom – on request",
+        "ctaLabel": "Get in touch",
+        "includesTeam": "Everything in Team, plus:",
+        "plannedMarker": "planned",
+        "features": [
+          "Single Sign-On (Microsoft Entra, Google Workspace)",
+          "Manager / team-lead role",
+          "Departments with permission scoping",
+          "Custom branding (logo, colors)",
+          "Simple HR file with document upload",
+          "Audit log with before/after values",
+          "DATEV export format",
+          "Webhooks & public REST API",
+          "Priority support with guaranteed response time",
+          "Dedicated onboarding"
+        ]
+      }
+    },
+    "trustRow": [
+      "Test without a credit card",
+      "Cancel anytime",
+      "No setup fee",
+      "Data in the EU"
+    ],
+    "faq": {
+      "heading": "Frequently asked",
+      "items": [
+        {
+          "q": "When will actual prices be available?",
+          "a": "We'll announce pricing at the official launch. Waitlist members see numbers first and get the early-adopter discount."
+        },
+        {
+          "q": "Is there a free trial?",
+          "a": "Yes. After launch, every team can try Clokki free of charge – no credit card, no commitment."
+        },
+        {
+          "q": "Is pricing per user?",
+          "a": "Yes, priced per active user per month. Removed team members aren't billed."
+        },
+        {
+          "q": "What's the difference between Team and Business?",
+          "a": "Team includes everything we ship today, which is already a lot. Business targets companies that need SSO, departments, audit logs, or DATEV integration. Those features are in planning – every team starts on Team today."
+        },
+        {
+          "q": "Can I switch plans later?",
+          "a": "Yes, anytime. No minimum term, and you can up- or downgrade monthly."
+        },
+        {
+          "q": "Where is my data stored?",
+          "a": "In the European Union, on EU servers – GDPR-compliant. No transfer to third countries."
+        }
+      ]
+    }
   },
   "footer": {
     "tagline": "Time tracking for German teams. Simple, compliant, transparent.",

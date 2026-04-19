@@ -10,6 +10,7 @@ const { lang = 'de' } = Astro.props
 const t = createT(lang)
 const currentYear = new Date().getFullYear()
 const home = lang === 'en' ? '/en/' : '/'
+const pricing = lang === 'en' ? '/en/preise' : '/preise'
 
 const linkColumns = [
   {
@@ -18,6 +19,7 @@ const linkColumns = [
       { label: t('header.features'), href: `${home}#funktionen` },
       { label: t('header.howItWorks'), href: `${home}#ablauf` },
       { label: t('header.compliance'), href: `${home}#compliance` },
+      { label: t('header.pricing'), href: pricing },
     ],
   },
   {

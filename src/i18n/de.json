@@ -3,12 +3,15 @@
     "indexTitle": "Clokki – Zeiterfassung für deutsche Teams",
     "indexDescription": "Zeiterfassung, Überstunden und Urlaubsverwaltung. DSGVO-konform und kompatibel mit dem deutschen Arbeitsrecht. Made in Germany.",
     "soonTitle": "Clokki – Bald verfügbar",
-    "soonDescription": "Clokki startet in Kürze. Trag dich auf die Warteliste ein und sei von Anfang an dabei."
+    "soonDescription": "Clokki startet in Kürze. Trag dich auf die Warteliste ein und sei von Anfang an dabei.",
+    "pricingTitle": "Clokki – Preise",
+    "pricingDescription": "Transparente Preise für deutsche Teams – ohne Setup-Gebühr, ohne Mindestlaufzeit. Konkrete Preise folgen zum Launch."
   },
   "header": {
     "features": "Funktionen",
     "howItWorks": "Ablauf",
     "compliance": "Compliance",
+    "pricing": "Preise",
     "login": "Anmelden",
     "homeAria": "Clokki – Startseite",
     "navAria": "Hauptnavigation"
@@ -99,6 +102,92 @@
     "title": "Bereit, mit den Excel-Listen Schluss zu machen?",
     "subtitle": "Clokki startet in Kürze. Sichere dir einen der ersten Plätze und werde beim Launch benachrichtigt.",
     "button": "Auf die Warteliste setzen"
+  },
+  "pricing": {
+    "badge": "Preise zum Launch",
+    "title": "Einfache Preise. Keine Überraschungen.",
+    "subtitle": "Transparent, ohne Setup-Gebühr, ohne Mindestlaufzeit. Die konkreten Preise geben wir mit dem Launch bekannt.",
+    "priceFallback": "Bald verfügbar",
+    "priceSuffix": "pro Mitarbeiter / Monat",
+    "tiers": {
+      "team": {
+        "name": "Team",
+        "tagline": "Für Teams, die ihre Excel-Listen ablösen wollen.",
+        "recommended": "Empfohlen",
+        "ctaLabel": "Auf die Warteliste setzen",
+        "features": [
+          "Zeiterfassung mit Pausen & mehreren Blöcken pro Tag",
+          "Überstundenkonto mit Defizit-Logik & Wochen-Ausgleich",
+          "Überstunden-Auszahlungen mit Historie",
+          "Urlaub, Krankheit & Familien-Krankentage",
+          "Überstunden-finanzierte Urlaubstage",
+          "Alle 16 Bundesländer – gesetzliche Feiertage automatisch",
+          "Betriebsfeiertage konfigurierbar",
+          "§3 & §4 ArbZG Compliance-Warnungen",
+          "Geplante Vertragsänderungen mit Impact-Analyse",
+          "Admin-Dashboard mit Genehmigungs-Workflow",
+          "CSV- & Excel-Export mit Zusammenfassungen",
+          "Hell-/Dunkelmodus, Deutsch & Englisch",
+          "DSGVO-konform, Daten in der EU",
+          "E-Mail-Support"
+        ]
+      },
+      "business": {
+        "name": "Business",
+        "tagline": "Für wachsende Unternehmen mit Enterprise-Anforderungen.",
+        "priceNote": "Individuell – auf Anfrage",
+        "ctaLabel": "Kontakt aufnehmen",
+        "includesTeam": "Alles aus Team, plus:",
+        "plannedMarker": "geplant",
+        "features": [
+          "Single Sign-On (Microsoft Entra, Google Workspace)",
+          "Manager-Rolle / Abteilungsleitung",
+          "Abteilungen mit Berechtigungs-Scoping",
+          "Custom Branding (Logo, Farben)",
+          "Einfache Personalakte mit Dokument-Upload",
+          "Audit-Log mit Vorher/Nachher-Werten",
+          "DATEV-Export-Format",
+          "Webhooks & Public REST API",
+          "Priority Support mit garantierter Reaktionszeit",
+          "Dedicated Onboarding"
+        ]
+      }
+    },
+    "trustRow": [
+      "Ohne Kreditkarte testen",
+      "Jederzeit kündbar",
+      "Keine Setup-Gebühr",
+      "Daten in der EU"
+    ],
+    "faq": {
+      "heading": "Häufige Fragen",
+      "items": [
+        {
+          "q": "Wann gibt es konkrete Preise?",
+          "a": "Wir geben die Preise mit dem offiziellen Launch bekannt. Wer auf der Warteliste steht, erfährt sie als Erstes und bekommt den Early-Adopter-Rabatt."
+        },
+        {
+          "q": "Gibt es eine kostenlose Testphase?",
+          "a": "Ja, jedes Team kann Clokki nach Launch kostenlos testen – ohne Kreditkarte, ohne Verpflichtung."
+        },
+        {
+          "q": "Wird pro Mitarbeiter abgerechnet?",
+          "a": "Ja, der Preis wird pro aktivem Mitarbeiter und Monat angesetzt. Wer nicht mehr im Team ist, wird nicht berechnet."
+        },
+        {
+          "q": "Was ist der Unterschied zwischen Team und Business?",
+          "a": "Team enthält alles, was wir heute ausliefern – und das ist schon ziemlich viel. Business ist für Unternehmen mit Anforderungen an SSO, Abteilungen, Audit-Logs oder DATEV-Integration. Diese Funktionen sind in Planung – heute starten alle Teams mit dem Team-Tarif."
+        },
+        {
+          "q": "Kann ich später wechseln?",
+          "a": "Ja, jederzeit. Es gibt keine Mindestlaufzeit, und Up- oder Downgrade ist monatlich möglich."
+        },
+        {
+          "q": "Wo werden meine Daten gespeichert?",
+          "a": "In der Europäischen Union, auf EU-Servern – DSGVO-konform. Keine Übertragung in Drittländer."
+        }
+      ]
+    }
   },
   "footer": {
     "tagline": "Zeiterfassung für deutsche Teams. Einfach, konform, transparent.",
