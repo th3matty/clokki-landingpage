@@ -109,49 +109,53 @@
     "subtitle": "Transparent, no setup fee, no minimum term. Final numbers will be announced at launch.",
     "priceFallback": "Coming soon",
     "priceSuffix": "per user / month",
-    "tiers": {
-      "team": {
-        "name": "Team",
-        "tagline": "For teams ready to retire their spreadsheets.",
-        "recommended": "Recommended",
-        "ctaLabel": "Join the waitlist",
-        "features": [
-          "Time tracking with breaks & multiple blocks per day",
-          "Overtime account with deficit logic & weekly balancing",
-          "Overtime payouts with full history",
-          "Holidays, sick days & family sick days",
-          "Overtime-funded vacation days",
-          "All 16 German states – public holidays automatic",
-          "Custom company holidays",
-          "§3 & §4 ArbZG compliance alerts",
-          "Scheduled contract changes with impact preview",
-          "Admin dashboard with approval workflow",
-          "CSV & Excel export with summaries",
-          "Dark mode, German & English",
-          "GDPR-compliant, data in the EU",
-          "Email support"
-        ]
-      },
-      "business": {
-        "name": "Business",
-        "tagline": "For growing companies with enterprise requirements.",
-        "priceNote": "Custom – on request",
-        "ctaLabel": "Get in touch",
-        "includesTeam": "Everything in Team, plus:",
-        "plannedMarker": "planned",
-        "features": [
-          "Single Sign-On (Microsoft Entra, Google Workspace)",
-          "Manager / team-lead role",
-          "Departments with permission scoping",
-          "Custom branding (logo, colors)",
-          "Simple HR file with document upload",
-          "Audit log with before/after values",
-          "DATEV export format",
-          "Webhooks & public REST API",
-          "Priority support with guaranteed response time",
-          "Dedicated onboarding"
-        ]
-      }
+    "tier": {
+      "name": "Clokki",
+      "tagline": "Everything your team needs to retire its spreadsheets.",
+      "ctaLabel": "Join the waitlist",
+      "features": [
+        "Time tracking with breaks & multiple blocks per day",
+        "Overtime account with deficit logic & weekly balancing",
+        "Overtime payouts with full history",
+        "Holidays, sick days & family sick days",
+        "Overtime-funded vacation days",
+        "All 16 German states – public holidays automatic",
+        "Custom company holidays",
+        "§3 & §4 ArbZG compliance alerts",
+        "Scheduled contract changes with impact preview",
+        "Admin dashboard with approval workflow",
+        "CSV & Excel export with summaries",
+        "Dark mode, German & English",
+        "GDPR-compliant, data in the EU",
+        "Email support"
+      ]
+    },
+    "planned": {
+      "heading": "On the roadmap",
+      "subtitle": "Features we're working on. Not yet part of Clokki – landing in the coming months.",
+      "marker": "planned",
+      "items": [
+        {
+          "title": "Custom branding",
+          "description": "Upload your logo and colors so Clokki matches your company."
+        },
+        {
+          "title": "Simple HR file",
+          "description": "Securely store contracts and other documents per employee."
+        },
+        {
+          "title": "Audit log",
+          "description": "Full change history with before/after values for compliance-sensitive teams."
+        },
+        {
+          "title": "DATEV export",
+          "description": "Timesheets exported in DATEV format for German payroll workflows."
+        },
+        {
+          "title": "Webhooks",
+          "description": "Push events like holiday approvals or compliance alerts live into your own systems."
+        }
+      ]
     },
     "trustRow": [
       "Test without a credit card",
@@ -171,16 +175,8 @@
           "a": "Yes. After launch, every team can try Clokki free of charge – no credit card, no commitment."
         },
         {
-          "q": "Is pricing per user?",
-          "a": "Yes, priced per active user per month. Removed team members aren't billed."
-        },
-        {
-          "q": "What's the difference between Team and Business?",
-          "a": "Team includes everything we ship today, which is already a lot. Business targets companies that need SSO, departments, audit logs, or DATEV integration. Those features are in planning – every team starts on Team today."
-        },
-        {
-          "q": "Can I switch plans later?",
-          "a": "Yes, anytime. No minimum term, and you can up- or downgrade monthly."
+          "q": "Can I cancel anytime?",
+          "a": "Yes. No minimum term, monthly billing, cancel effective at the end of the month."
         },
         {
           "q": "Where is my data stored?",

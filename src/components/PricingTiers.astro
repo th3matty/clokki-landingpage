@@ -10,25 +10,15 @@ const { lang = 'de' } = Astro.props
 const t = createT(lang)
 const dict = lang === 'en' ? en : de
 
-const team = dict.pricing.tiers.team
-const business = dict.pricing.tiers.business
-
+const tier = dict.pricing.tier
 const soon = lang === 'en' ? '/en/soon' : '/soon'
-const contactMail = `mailto:ma_malek@protonmail.com?subject=${encodeURIComponent(
-  lang === 'en' ? 'Clokki Business tier inquiry' : 'Anfrage Clokki Business-Tarif',
-)}`
 ---
 
-<section class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
-  <!-- Team tier (recommended) -->
+<section class="max-w-xl mx-auto">
   <article class="relative rounded-2xl border-2 border-blue-500 dark:border-blue-400 bg-white dark:bg-gray-800 p-6 sm:p-8 shadow-lg">
-    <span class="absolute -top-3 left-6 inline-flex items-center px-3 py-0.5 rounded-full text-xs font-semibold bg-blue-600 text-white">
-      {team.recommended}
-    </span>
-
     <div class="mb-6">
-      <h3 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">{team.name}</h3>
-      <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">{team.tagline}</p>
+      <h3 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">{tier.name}</h3>
+      <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">{tier.tagline}</p>
     </div>
 
     <div class="mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
@@ -39,7 +29,7 @@ const contactMail = `mailto:ma_malek@protonmail.com?subject=${encodeURIComponent
     </div>
 
     <ul class="space-y-2.5 mb-8">
-      {team.features.map((feature) => (
+      {tier.features.map((feature) => (
         <li class="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-200">
           <svg class="w-4 h-4 mt-0.5 text-green-600 dark:text-green-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polyline points="20 6 9 17 4 12" />
@@ -53,50 +43,7 @@ const contactMail = `mailto:ma_malek@protonmail.com?subject=${encodeURIComponent
       href={soon}
       class="block w-full text-center px-5 py-3 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
     >
-      {team.ctaLabel}
-    </a>
-  </article>
-
-  <!-- Business tier -->
-  <article class="relative rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 sm:p-8">
-    <div class="mb-6">
-      <h3 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">{business.name}</h3>
-      <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">{business.tagline}</p>
-    </div>
-
-    <div class="mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
-      <div class="flex items-baseline gap-2">
-        <span class="text-3xl font-semibold text-gray-900 dark:text-gray-100">{business.priceNote}</span>
-      </div>
-      <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">&nbsp;</p>
-    </div>
-
-    <p class="text-xs font-medium text-gray-900 dark:text-gray-100 mb-3">
-      {business.includesTeam}
-    </p>
-
-    <ul class="space-y-2.5 mb-8">
-      {business.features.map((feature) => (
-        <li class="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-200">
-          <svg class="w-4 h-4 mt-0.5 text-gray-400 dark:text-gray-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="10" />
-            <polyline points="12 6 12 12 16 14" />
-          </svg>
-          <span class="flex-1">
-            {feature}
-            <span class="ml-1.5 inline-flex items-center px-1.5 py-0 rounded text-[10px] font-medium bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 align-middle">
-              {business.plannedMarker}
-            </span>
-          </span>
-        </li>
-      ))}
-    </ul>
-
-    <a
-      href={contactMail}
-      class="block w-full text-center px-5 py-3 text-sm font-medium text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
-    >
-      {business.ctaLabel}
+      {tier.ctaLabel}
     </a>
   </article>
 </section>

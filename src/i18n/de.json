@@ -109,49 +109,53 @@
     "subtitle": "Transparent, ohne Setup-Gebühr, ohne Mindestlaufzeit. Die konkreten Preise geben wir mit dem Launch bekannt.",
     "priceFallback": "Bald verfügbar",
     "priceSuffix": "pro Mitarbeiter / Monat",
-    "tiers": {
-      "team": {
-        "name": "Team",
-        "tagline": "Für Teams, die ihre Excel-Listen ablösen wollen.",
-        "recommended": "Empfohlen",
-        "ctaLabel": "Auf die Warteliste setzen",
-        "features": [
-          "Zeiterfassung mit Pausen & mehreren Blöcken pro Tag",
-          "Überstundenkonto mit Defizit-Logik & Wochen-Ausgleich",
-          "Überstunden-Auszahlungen mit Historie",
-          "Urlaub, Krankheit & Familien-Krankentage",
-          "Überstunden-finanzierte Urlaubstage",
-          "Alle 16 Bundesländer – gesetzliche Feiertage automatisch",
-          "Betriebsfeiertage konfigurierbar",
-          "§3 & §4 ArbZG Compliance-Warnungen",
-          "Geplante Vertragsänderungen mit Impact-Analyse",
-          "Admin-Dashboard mit Genehmigungs-Workflow",
-          "CSV- & Excel-Export mit Zusammenfassungen",
-          "Hell-/Dunkelmodus, Deutsch & Englisch",
-          "DSGVO-konform, Daten in der EU",
-          "E-Mail-Support"
-        ]
-      },
-      "business": {
-        "name": "Business",
-        "tagline": "Für wachsende Unternehmen mit Enterprise-Anforderungen.",
-        "priceNote": "Individuell – auf Anfrage",
-        "ctaLabel": "Kontakt aufnehmen",
-        "includesTeam": "Alles aus Team, plus:",
-        "plannedMarker": "geplant",
-        "features": [
-          "Single Sign-On (Microsoft Entra, Google Workspace)",
-          "Manager-Rolle / Abteilungsleitung",
-          "Abteilungen mit Berechtigungs-Scoping",
-          "Custom Branding (Logo, Farben)",
-          "Einfache Personalakte mit Dokument-Upload",
-          "Audit-Log mit Vorher/Nachher-Werten",
-          "DATEV-Export-Format",
-          "Webhooks & Public REST API",
-          "Priority Support mit garantierter Reaktionszeit",
-          "Dedicated Onboarding"
-        ]
-      }
+    "tier": {
+      "name": "Clokki",
+      "tagline": "Alles, was dein Team braucht, um Excel-Listen abzulösen.",
+      "ctaLabel": "Auf die Warteliste setzen",
+      "features": [
+        "Zeiterfassung mit Pausen & mehreren Blöcken pro Tag",
+        "Überstundenkonto mit Defizit-Logik & Wochen-Ausgleich",
+        "Überstunden-Auszahlungen mit Historie",
+        "Urlaub, Krankheit & Familien-Krankentage",
+        "Überstunden-finanzierte Urlaubstage",
+        "Alle 16 Bundesländer – gesetzliche Feiertage automatisch",
+        "Betriebsfeiertage konfigurierbar",
+        "§3 & §4 ArbZG Compliance-Warnungen",
+        "Geplante Vertragsänderungen mit Impact-Analyse",
+        "Admin-Dashboard mit Genehmigungs-Workflow",
+        "CSV- & Excel-Export mit Zusammenfassungen",
+        "Hell-/Dunkelmodus, Deutsch & Englisch",
+        "DSGVO-konform, Daten in der EU",
+        "E-Mail-Support"
+      ]
+    },
+    "planned": {
+      "heading": "In Planung",
+      "subtitle": "Funktionen, an denen wir arbeiten. Noch nicht Teil von Clokki – folgen in den nächsten Monaten.",
+      "marker": "geplant",
+      "items": [
+        {
+          "title": "Custom Branding",
+          "description": "Logo und Farben anpassen, damit Clokki zu deinem Unternehmen passt."
+        },
+        {
+          "title": "Einfache Personalakte",
+          "description": "Vertrags- und sonstige Dokumente pro Mitarbeiter sicher ablegen."
+        },
+        {
+          "title": "Audit-Log",
+          "description": "Vollständiger Änderungsverlauf mit Vorher-/Nachher-Werten für compliance-sensible Teams."
+        },
+        {
+          "title": "DATEV-Export",
+          "description": "Stundenlisten direkt im DATEV-Format für die Lohnbuchhaltung."
+        },
+        {
+          "title": "Webhooks",
+          "description": "Ereignisse wie Urlaubsfreigaben oder Compliance-Warnungen live in deine eigenen Systeme pushen."
+        }
+      ]
     },
     "trustRow": [
       "Ohne Kreditkarte testen",
@@ -171,16 +175,8 @@
           "a": "Ja, jedes Team kann Clokki nach Launch kostenlos testen – ohne Kreditkarte, ohne Verpflichtung."
         },
         {
-          "q": "Wird pro Mitarbeiter abgerechnet?",
-          "a": "Ja, der Preis wird pro aktivem Mitarbeiter und Monat angesetzt. Wer nicht mehr im Team ist, wird nicht berechnet."
-        },
-        {
-          "q": "Was ist der Unterschied zwischen Team und Business?",
-          "a": "Team enthält alles, was wir heute ausliefern – und das ist schon ziemlich viel. Business ist für Unternehmen mit Anforderungen an SSO, Abteilungen, Audit-Logs oder DATEV-Integration. Diese Funktionen sind in Planung – heute starten alle Teams mit dem Team-Tarif."
-        },
-        {
-          "q": "Kann ich später wechseln?",
-          "a": "Ja, jederzeit. Es gibt keine Mindestlaufzeit, und Up- oder Downgrade ist monatlich möglich."
+          "q": "Kann ich jederzeit kündigen?",
+          "a": "Ja. Keine Mindestlaufzeit, monatliche Abrechnung, Kündigung zum Monatsende."
         },
         {
           "q": "Wo werden meine Daten gespeichert?",

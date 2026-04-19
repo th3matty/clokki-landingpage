@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/Header.astro'
 import Footer from '../../components/Footer.astro'
 import PricingTiers from '../../components/PricingTiers.astro'
+import PricingPlanned from '../../components/PricingPlanned.astro'
 import PricingFaq from '../../components/PricingFaq.astro'
 import { createT, createTList, type Lang } from '../../lib/i18n'
 
@@ -56,6 +57,12 @@ const trust = tList('pricing.trustRow')
     <section class="pb-16 sm:pb-20">
       <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <PricingTiers lang={lang} />
+      </div>
+    </section>
+
+    <section class="py-16 sm:py-20 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/40">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <PricingPlanned lang={lang} />
       </div>
     </section>
 
