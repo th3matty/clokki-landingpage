@@ -89,14 +89,23 @@
     ]
   },
   "compliance": {
-    "title": "Compliant with German labor law",
-    "subtitle": "Built for the requirements of German companies – without legal pitfalls.",
+    "title": "Working-time records under German law",
+    "subtitle": "Every employer has to record working time – §3(2) no. 1 ArbSchG, as read by the Federal Labour Court on 13 September 2022 (1 ABR 22/21). German law currently prescribes no particular form; handwritten records are lawful. Clokki takes the work off you, not the duty.",
     "points": [
+      "The statutory record as its own export: one employee, one sheet per calendar year – for the authority under §17(4) ArbZG",
+      "Time beyond eight hours a day is shown per day and kept for two years (§16(2) ArbZG)",
+      "Change log: who changed what and when, with the value before and after – deletions included",
+      "Optional 48-hour report across six months or 24 weeks – it shows the average, the judgement stays with you",
+      "Departed employees: records are kept for two years, then deleted automatically",
       "All 16 German states and their public holidays",
       "Continued pay during illness (§3 EFZG)",
       "Flexible contracts: part-time, 4-day weeks, variable hours",
       "GDPR-compliant data storage in the EU"
-    ]
+    ],
+    "limitsLabel": "Not covered",
+    "limits": "Night work under §6 ArbZG (a different averaging window), young-worker protection, Sunday limits under §11 ArbZG, and collective-agreement special cases.",
+    "disclaimerLabel": "Not legal advice",
+    "disclaimer": "How §§16 and 17 ArbZG read for your company is a question for a Fachanwalt für Arbeitsrecht or your Landes-Arbeitsschutzbehörde (Gewerbeaufsichtsamt)."
   },
   "finalCta": {
     "title": "Ready to say goodbye to spreadsheets?",
@@ -124,7 +133,8 @@
         "§3 & §4 ArbZG compliance alerts",
         "Scheduled contract changes with impact preview",
         "Admin dashboard with approval workflow",
-        "CSV & Excel export with summaries",
+        "CSV & Excel export per employee, with summaries",
+        "Statutory working-time record as its own export (§16(2) ArbZG)",
         "Dark mode, German & English",
         "GDPR-compliant, data in the EU",
         "Email support"
@@ -142,10 +152,6 @@
         {
           "title": "Simple HR file",
           "description": "Securely store contracts and other documents per employee."
-        },
-        {
-          "title": "Audit log",
-          "description": "Full change history with before/after values for compliance-sensitive teams."
         },
         {
           "title": "DATEV export",

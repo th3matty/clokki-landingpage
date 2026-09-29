@@ -89,14 +89,23 @@
     ]
   },
   "compliance": {
-    "title": "Konform mit deutschem Arbeitsrecht",
-    "subtitle": "Aufgebaut für die Anforderungen deutscher Unternehmen – ohne juristische Stolperfallen.",
+    "title": "Arbeitszeiterfassung nach deutschem Recht",
+    "subtitle": "Arbeitszeit aufzeichnen muss jeder Arbeitgeber – §3 Abs. 2 Nr. 1 ArbSchG, so ausgelegt vom Bundesarbeitsgericht am 13.09.2022 (1 ABR 22/21). Eine bestimmte Form schreibt das Gesetz derzeit nicht vor, handschriftlich ist erlaubt. Clokki nimmt dir die Arbeit ab, nicht die Pflicht.",
     "points": [
+      "Gesetzlicher Nachweis als eigener Export: ein Mitarbeiter, ein Blatt pro Kalenderjahr – für die Behörde nach §17 Abs. 4 ArbZG",
+      "Zeiten über acht Stunden pro Tag werden je Tag ausgewiesen und zwei Jahre aufbewahrt (§16 Abs. 2 ArbZG)",
+      "Änderungsprotokoll: wer wann was geändert hat, mit Wert davor und danach – Löschungen eingeschlossen",
+      "Zuschaltbarer 48-Stunden-Bericht über sechs Monate bzw. 24 Wochen – er zeigt den Durchschnitt, die Bewertung bleibt bei dir",
+      "Ausgeschiedene Mitarbeiter: Aufzeichnungen bleiben zwei Jahre erhalten und werden danach automatisch gelöscht",
       "Alle 16 Bundesländer & Feiertagsregelungen",
       "Lohnfortzahlung im Krankheitsfall (§3 EFZG)",
       "Flexible Verträge: Teilzeit, 4-Tage-Woche, variable Stunden",
       "DSGVO-konforme Datenspeicherung in der EU"
-    ]
+    ],
+    "limitsLabel": "Nicht abgedeckt",
+    "limits": "Nachtarbeit nach §6 ArbZG (anderer Durchschnittszeitraum), Jugendarbeitsschutz, Sonntagsgrenzen nach §11 ArbZG und tarifvertragliche Sonderfälle.",
+    "disclaimerLabel": "Keine Rechtsberatung",
+    "disclaimer": "Wie §§16 und 17 ArbZG für dein Unternehmen zu lesen sind, sagt dir ein Fachanwalt für Arbeitsrecht oder deine Landes-Arbeitsschutzbehörde (Gewerbeaufsichtsamt)."
   },
   "finalCta": {
     "title": "Bereit, mit den Excel-Listen Schluss zu machen?",
@@ -124,7 +133,8 @@
         "§3 & §4 ArbZG Compliance-Warnungen",
         "Geplante Vertragsänderungen mit Impact-Analyse",
         "Admin-Dashboard mit Genehmigungs-Workflow",
-        "CSV- & Excel-Export mit Zusammenfassungen",
+        "CSV- & Excel-Export je Mitarbeiter, mit Zusammenfassungen",
+        "Gesetzlicher Nachweis als eigener Export (§16 Abs. 2 ArbZG)",
         "Hell-/Dunkelmodus, Deutsch & Englisch",
         "DSGVO-konform, Daten in der EU",
         "E-Mail-Support"
@@ -142,10 +152,6 @@
         {
           "title": "Einfache Personalakte",
           "description": "Vertrags- und sonstige Dokumente pro Mitarbeiter sicher ablegen."
-        },
-        {
-          "title": "Audit-Log",
-          "description": "Vollständiger Änderungsverlauf mit Vorher-/Nachher-Werten für compliance-sensible Teams."
         },
         {
           "title": "DATEV-Export",
