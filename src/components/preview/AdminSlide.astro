@@ -1,144 +1,478 @@
 ---
+import AppChrome from './AppChrome.astro'
 import Avatar from './Avatar.astro'
 
+/**
+ * Mirrors AdminView.vue: header with the pending-requests tile only (the
+ * member count was removed — the Team-Mitglieder card header already states
+ * it), then a 2/3 + 1/3 grid. Left: members, status legend, team holiday
+ * calendar. Right: activity feed with its change table, then the export panel.
+ */
 const members = [
-  { name: 'Anna Schmidt',   email: 'anna@team.de',   initials: 'AS', color: 'bg-pink-500 text-white',    role: 'Mitarbeiter', roleClass: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300',      status: 'verfügbar', statusDot: 'bg-green-500',   statusText: 'text-green-600 dark:text-green-400' },
-  { name: 'Tim Becker',     email: 'tim@team.de',    initials: 'TB', color: 'bg-amber-500 text-white',   role: 'Mitarbeiter', roleClass: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300',      status: 'verfügbar', statusDot: 'bg-green-500',   statusText: 'text-green-600 dark:text-green-400' },
-  { name: 'Sophie Klein',   email: 'sophie@team.de', initials: 'SK', color: 'bg-emerald-500 text-white', role: 'Manager',     roleClass: 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300', status: 'im Urlaub', statusDot: 'bg-emerald-500', statusText: 'text-emerald-600 dark:text-emerald-400' },
-  { name: 'Lars Weber',     email: 'lars@team.de',   initials: 'LW', color: 'bg-sky-500 text-white',     role: 'Mitarbeiter', roleClass: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300',      status: 'verfügbar', statusDot: 'bg-green-500',   statusText: 'text-green-600 dark:text-green-400' },
+  { initials: 'AS', name: 'Anna Schmidt', role: 'Mitarbeiter', mail: 'anna@team.de' },
+  { initials: 'TB', name: 'Tim Becker', role: 'Mitarbeiter', mail: 'tim@team.de' },
+  { initials: 'SK', name: 'Sophie Klein', role: 'Administrator', mail: 'sophie@team.de' },
+  { initials: 'LW', name: 'Lars Weber', role: 'Mitarbeiter', mail: 'lars@team.de' },
 ]
 
-const activities = [
-  {
-    initials: 'AS', color: 'bg-pink-500 text-white', emoji: '🏖️', iconBg: 'bg-blue-100 dark:bg-blue-900/30',
-    name: 'Anna Schmidt',
-    message: 'hat einen Urlaubsantrag eingereicht',
-    dateRange: '22. Apr – 24. Apr · 3 Tage',
-    reason: '"Familienbesuch"',
-    time: 'vor 2 Std.',
-  },
-  {
-    initials: 'TB', color: 'bg-amber-500 text-white', emoji: '⏰', iconBg: 'bg-purple-100 dark:bg-purple-900/30',
-    name: 'Tim Becker',
-    message: 'hat einen Zeiteintrag korrigiert',
-    dateRange: '15. Apr · 09:00 – 18:30',
-    reason: null,
-    time: 'vor 4 Std.',
-  },
-  {
-    initials: 'SK', color: 'bg-emerald-500 text-white', emoji: '💸', iconBg: 'bg-green-100 dark:bg-green-900/30',
-    name: 'Sophie Klein',
-    message: 'hat eine Überstunden-Auszahlung angefragt',
-    dateRange: '8 Stunden · 420 €',
-    reason: null,
-    time: 'gestern',
-  },
+// September 2026 starts on a Tuesday; the grid runs Monday–Sunday.
+type Day = {
+  n: number
+  out?: boolean
+  weekend?: boolean
+  today?: boolean
+  company?: string
+  people?: string[]
+  extra?: number
+}
+const weeks: Day[][] = [
+  [
+    { n: 31, out: true },
+    { n: 1 },
+    { n: 2 },
+    { n: 3 },
+    { n: 4 },
+    { n: 5, weekend: true },
+    { n: 6, weekend: true },
+  ],
+  [
+    { n: 7 },
+    { n: 8, people: ['Anna Schmidt', 'Tim Becker'] },
+    { n: 9, people: ['Anna Schmidt', 'Tim Becker'] },
+    { n: 10, people: ['Anna Schmidt'] },
+    { n: 11 },
+    { n: 12, weekend: true },
+    { n: 13, weekend: true },
+  ],
+  [
+    { n: 14 },
+    { n: 15 },
+    { n: 16 },
+    { n: 17 },
+    { n: 18, people: ['Sophie Klein', 'Lars Weber', 'Tim Becker'], extra: 1 },
+    { n: 19, weekend: true },
+    { n: 20, weekend: true },
+  ],
+  [
+    { n: 21 },
+    { n: 22 },
+    { n: 23 },
+    { n: 24 },
+    { n: 25 },
+    { n: 26, weekend: true },
+    { n: 27, weekend: true },
+  ],
+  [
+    { n: 28 },
+    { n: 29, today: true },
+    { n: 30, company: 'Betriebsausflug' },
+    { n: 1, out: true },
+    { n: 2, out: true },
+    { n: 3, out: true, weekend: true },
+    { n: 4, out: true, weekend: true },
+  ],
 ]
+const dayHeaders = ['M', 'D', 'M', 'D', 'F', 'S', 'S']
+
+const holidayCount = (d: Day) => (d.people?.length ?? 0) + (d.extra ?? 0)
 ---
 
 <div class="bg-gray-50 dark:bg-gray-900">
-  <div class="flex items-center gap-2 px-4 py-2.5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-    <span class="w-2.5 h-2.5 rounded-full bg-red-400/70" aria-hidden="true"></span>
-    <span class="w-2.5 h-2.5 rounded-full bg-yellow-400/70" aria-hidden="true"></span>
-    <span class="w-2.5 h-2.5 rounded-full bg-green-400/70" aria-hidden="true"></span>
-    <span class="ml-3 text-xs text-gray-500 dark:text-gray-400">app.clokki.de / admin</span>
-  </div>
+  <AppChrome role="admin" />
 
-  <div class="p-5 sm:p-6 space-y-5">
-    <!-- Admin header with pending-requests pill on right (matches AdminView.vue) -->
-    <div class="flex flex-wrap items-center justify-between gap-3">
-      <div>
-        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Admin-Dashboard</h3>
-        <p class="mt-1 text-xs sm:text-sm text-gray-600 dark:text-gray-400">Team, Genehmigungen & Compliance verwalten</p>
+  <div class="p-4 sm:p-5 space-y-4">
+    <!-- Header — only the pending-requests tile -->
+    <div class="flex items-start justify-between gap-3">
+      <div class="min-w-0">
+        <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100">
+          Admin-Dashboard
+        </h3>
+        <p class="mt-0.5 text-[11px] sm:text-xs text-gray-600 dark:text-gray-400">
+          Verwalten Sie Ihr Team und überwachen Sie die Aktivitäten
+        </p>
       </div>
-      <div class="flex items-center gap-6 text-xs">
-        <div class="text-center">
-          <div class="text-lg font-bold text-gray-900 dark:text-gray-100">4</div>
-          <div class="text-[10px] text-gray-500 dark:text-gray-400">Mitglieder</div>
-        </div>
-        <div class="text-center">
-          <div class="relative inline-block px-3 py-1.5 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm">
-            <div class="text-lg font-bold text-orange-600 dark:text-orange-400">3</div>
-            <div class="text-[10px] text-gray-500 dark:text-gray-400">Offene Anträge</div>
-            <span class="absolute top-1 right-1 flex w-2 h-2">
-              <span class="animate-ping absolute inline-flex w-full h-full rounded-full bg-orange-400 opacity-75"></span>
-              <span class="relative inline-flex w-2 h-2 rounded-full bg-orange-500"></span>
-            </span>
-          </div>
-        </div>
+      <div
+        class="relative flex-shrink-0 text-center px-3 py-1.5 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm"
+      >
+        <span class="block text-lg font-bold text-orange-600 dark:text-orange-400">3</span>
+        <span class="block text-[9px] text-gray-500 dark:text-gray-400">Ausstehende Anfragen</span>
+        <span class="absolute top-1 right-1 flex w-2 h-2" aria-hidden="true">
+          <span class="animate-ping absolute inline-flex w-full h-full rounded-full bg-orange-400 opacity-75"></span>
+          <span class="relative inline-flex w-2 h-2 rounded-full bg-orange-500"></span>
+        </span>
       </div>
     </div>
 
-    <!-- 2/3 + 1/3 grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-      <!-- Team members card -->
-      <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg shadow">
-        <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-          <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">Team-Mitglieder</h4>
-          <span class="text-xs text-gray-500 dark:text-gray-400">4 Personen</span>
-        </div>
-        <div class="p-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {members.map((m) => (
-            <div class="rounded-xl border border-gray-200 dark:border-gray-700 p-3 hover:border-blue-300 dark:hover:border-blue-600 transition-colors">
-              <div class="flex items-start gap-3">
-                <!-- Avatar with status dot -->
-                <div class="relative flex-shrink-0">
-                  <Avatar initials={m.initials} colorClass={m.color} size="lg" />
-                  <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center">
-                    <span class:list={['w-2 h-2 rounded-full', m.statusDot]} aria-hidden="true"></span>
-                  </span>
-                </div>
-                <div class="min-w-0 flex-1">
-                  <div class="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">{m.name}</div>
-                  <div class="flex items-center gap-1.5 mt-0.5">
-                    <span class:list={['text-[10px] px-1.5 py-0.5 rounded-full', m.roleClass]}>
-                      {m.role}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
+      <!-- Left column (2/3): members + calendar -->
+      <div class="lg:col-span-2 space-y-3">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+          <div
+            class="px-3.5 py-2.5 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between"
+          >
+            <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">Team-Mitglieder</h4>
+            <span class="text-[10px] text-gray-500 dark:text-gray-400">4 Mitglieder</span>
+          </div>
+          <div class="p-2.5 grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {
+              members.map((member) => (
+                <div class="rounded-xl border border-gray-200 dark:border-gray-700 p-2.5">
+                  <div class="flex items-center gap-2.5 min-w-0">
+                    <span class="relative flex-shrink-0">
+                      <Avatar
+                        initials={member.initials}
+                        colorClass="bg-blue-600 text-white"
+                        size="sm"
+                      />
+                      <span
+                        class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-green-500 ring-2 ring-white dark:ring-gray-800"
+                        aria-hidden="true"
+                      />
                     </span>
-                    <span class:list={['inline-flex items-center gap-1 text-[10px]', m.statusText]}>
-                      <span class:list={['w-1 h-1 rounded-full', m.statusDot]}></span>
-                      {m.status}
-                    </span>
+                    <div class="min-w-0">
+                      <p class="text-[11px] font-semibold text-gray-900 dark:text-gray-100 truncate">
+                        {member.name}
+                      </p>
+                      <p class="flex items-center gap-1.5 mt-0.5">
+                        <span
+                          class:list={[
+                            'inline-flex px-1.5 rounded text-[9px] font-medium',
+                            member.role === 'Administrator'
+                              ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300'
+                              : 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300',
+                          ]}
+                        >
+                          {member.role}
+                        </span>
+                        <span class="text-[9px] text-green-600 dark:text-green-400">
+                          • Verfügbar
+                        </span>
+                      </p>
+                      <p class="text-[9px] text-gray-500 dark:text-gray-400 truncate mt-0.5">
+                        {member.mail}
+                      </p>
+                    </div>
                   </div>
-                  <p class="text-[10px] text-gray-500 dark:text-gray-400 truncate mt-0.5">{m.email}</p>
+                </div>
+              ))
+            }
+          </div>
+          <div
+            class="px-3.5 py-2 border-t border-gray-200 dark:border-gray-700 flex items-center gap-1.5 text-[11px] text-gray-600 dark:text-gray-400"
+          >
+            <svg
+              class="w-3 h-3"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 16v-4M12 8h.01"></path>
+            </svg>
+            Statuslegende
+            <svg
+              class="w-3 h-3 ml-auto"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg
+            >
+          </div>
+        </div>
+
+        <!-- Team-Urlaubskalender -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700">
+          <div
+            class="px-3.5 py-2.5 border-b border-gray-200 dark:border-gray-700 flex items-start justify-between gap-3"
+          >
+            <div class="min-w-0">
+              <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">
+                Team-Urlaubskalender 2026
+              </h4>
+              <p class="text-[10px] text-gray-600 dark:text-gray-400 mt-0.5">
+                Übersicht aller genehmigten Team-Urlaube
+              </p>
+            </div>
+            <div
+              class="flex items-center gap-1.5 flex-shrink-0 text-gray-400 dark:text-gray-500"
+              aria-hidden="true"
+            >
+              <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                ><path d="M15 19l-7-7 7-7"></path></svg
+              >
+              <span class="text-[11px] font-medium text-gray-900 dark:text-gray-100">2026</span>
+              <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                ><path d="M9 5l7 7-7 7"></path></svg
+              >
+            </div>
+          </div>
+
+          <div class="px-3.5 py-2 border-b border-gray-200 dark:border-gray-700">
+            <div
+              class="inline-flex items-center gap-1 bg-gray-100 dark:bg-gray-700 rounded-lg p-0.5"
+            >
+              <span
+                class="px-2.5 py-1 text-[10px] font-medium rounded-md bg-white dark:bg-gray-600 text-gray-900 dark:text-gray-100 shadow-sm"
+                >Monatlich</span
+              >
+              <span class="px-2.5 py-1 text-[10px] font-medium rounded-md text-gray-600 dark:text-gray-400"
+                >Jährlich</span
+              >
+            </div>
+          </div>
+
+          <div class="p-3">
+            <div class="rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+              <div
+                class="px-3 py-2 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between"
+              >
+                <h5 class="text-[12px] font-medium text-gray-900 dark:text-gray-100">
+                  September 2026
+                </h5>
+                <div
+                  class="flex items-center gap-1.5 text-gray-400 dark:text-gray-500"
+                  aria-hidden="true"
+                >
+                  <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    ><path d="M15 19l-7-7 7-7"></path></svg
+                  >
+                  <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    ><path d="M9 5l7 7-7 7"></path></svg
+                  >
+                </div>
+              </div>
+
+              <div class="p-2.5">
+                <div class="grid grid-cols-7 mb-1">
+                  {
+                    dayHeaders.map((day) => (
+                      <span class="text-center text-[10px] font-medium text-gray-500 dark:text-gray-400 py-0.5">
+                        {day}
+                      </span>
+                    ))
+                  }
+                </div>
+                <div
+                  class="grid grid-cols-7 gap-px bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden"
+                >
+                  {
+                    weeks.flat().map((day) => (
+                      <div
+                        class:list={[
+                          'min-h-[46px] p-1',
+                          day.out
+                            ? 'bg-gray-50 dark:bg-gray-700/60'
+                            : day.today
+                              ? 'bg-blue-50 dark:bg-blue-900/20'
+                              : 'bg-white dark:bg-gray-800',
+                        ]}
+                      >
+                        <div class="flex items-center justify-between gap-1">
+                          <span class="flex items-center gap-0.5">
+                            <span
+                              class:list={[
+                                'text-[10px] font-medium',
+                                day.out
+                                  ? 'text-gray-400 dark:text-gray-600'
+                                  : day.company
+                                    ? 'text-amber-600 dark:text-amber-400 font-bold'
+                                    : day.today
+                                      ? 'text-blue-600 dark:text-blue-400'
+                                      : day.weekend
+                                        ? 'text-gray-500 dark:text-gray-400'
+                                        : 'text-gray-900 dark:text-gray-100',
+                              ]}
+                            >
+                              {day.n}
+                            </span>
+                            {day.company && <span class="text-[8px]">🎉</span>}
+                          </span>
+                          {holidayCount(day) > 0 && (
+                            <span class="w-3.5 h-3.5 rounded-full bg-green-500 dark:bg-green-400 text-white flex items-center justify-center text-[8px] font-bold flex-shrink-0">
+                              {holidayCount(day)}
+                            </span>
+                          )}
+                        </div>
+
+                        {day.company && (
+                          <span class="mt-0.5 block truncate rounded px-1 text-[8px] font-semibold bg-amber-500/40 dark:bg-amber-400/40 text-amber-900 dark:text-amber-100">
+                            🎉 {day.company}
+                          </span>
+                        )}
+                        {day.people?.map((person) => (
+                          <span class="mt-0.5 block truncate rounded px-1 text-[8px] bg-green-500/50 dark:bg-green-600/50 text-green-950 dark:text-green-50">
+                            🏖️ {person}
+                          </span>
+                        ))}
+                        {day.extra && (
+                          <span class="block px-1 text-[8px] text-gray-500 dark:text-gray-400">
+                            +{day.extra} weitere
+                          </span>
+                        )}
+                      </div>
+                    ))
+                  }
                 </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
 
-      <!-- Activity feed (matches ActivityFeed.vue: rounded-full emoji icons, name + message + metadata) -->
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
-        <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-          <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">Aktivität</h4>
-          <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700">
-            <svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M23 4v6h-6 M1 20v-6h6 M3.51 9a9 9 0 0 1 14.85-3.36L23 10 M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-            Aktualisieren
-          </span>
-        </div>
-        <ul class="divide-y divide-gray-200 dark:divide-gray-700">
-          {activities.map((a) => (
-            <li class="p-3">
-              <div class="flex items-start gap-2.5">
-                <span class:list={['w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm', a.iconBg]} aria-hidden="true">
-                  {a.emoji}
-                </span>
-                <div class="min-w-0 flex-1">
-                  <p class="text-xs font-medium text-gray-900 dark:text-gray-100">{a.name}</p>
-                  <p class="text-[11px] text-gray-600 dark:text-gray-400 leading-snug">{a.message}</p>
-                  <div class="mt-1 inline-flex items-center gap-1 text-[10px] text-gray-500 dark:text-gray-400">
-                    <svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    <span class="font-medium">{a.dateRange}</span>
+      <!-- Right column (1/3): activity feed + export -->
+      <div class="space-y-3">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+          <div
+            class="px-3.5 py-2.5 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between"
+          >
+            <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">Letzte Aktivitäten</h4>
+            <span
+              class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700"
+            >
+              <svg
+                class="w-2.5 h-2.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M21 12a9 9 0 11-3-6.7M21 3v6h-6"></path>
+              </svg>
+              Aktualisieren
+            </span>
+          </div>
+
+          <div class="divide-y divide-gray-200 dark:divide-gray-700">
+            <!-- Time-entry request, with the change table the app renders -->
+            <div class="p-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <div class="flex items-center gap-2 min-w-0">
+                  <span
+                    class="w-6 h-6 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-[11px] flex-shrink-0"
+                    aria-hidden="true">⏰</span
+                  >
+                  <div class="min-w-0">
+                    <p class="text-[11px] font-medium text-gray-900 dark:text-gray-100 truncate">
+                      Tim Becker
+                    </p>
+                    <p class="text-[9px] text-gray-500 dark:text-gray-400">
+                      Zeiteintragsantrag · Eingereicht 24. Sept.
+                    </p>
                   </div>
-                  {a.reason && (
-                    <p class="mt-1 text-[10px] italic text-orange-600 dark:text-orange-300">{a.reason}</p>
-                  )}
-                  <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">{a.time}</p>
+                </div>
+                <span
+                  class="flex-shrink-0 px-1.5 py-0.5 rounded-full text-[9px] font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300"
+                  >Genehmigt</span
+                >
+              </div>
+
+              <p class="mt-1.5 flex items-center gap-1 text-[9px] text-gray-600 dark:text-gray-400">
+                <svg
+                  class="w-2.5 h-2.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+                  <path d="M16 3v4M8 3v4M3 11h18"></path>
+                </svg>
+                24.09.2026
+              </p>
+
+              <div
+                class="mt-1 rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden text-[9px]"
+              >
+                <div
+                  class="grid grid-cols-[1fr_0.7fr_1.1fr] bg-gray-50 dark:bg-gray-700 text-gray-500 dark:text-gray-400"
+                >
+                  <span class="px-1.5 py-0.5">Feld</span>
+                  <span class="px-1.5 py-0.5">Aktuell</span>
+                  <span class="px-1.5 py-0.5">Angefragt</span>
+                </div>
+                <div
+                  class="grid grid-cols-[1fr_0.7fr_1.1fr] border-t border-gray-200 dark:border-gray-700"
+                >
+                  <span class="px-1.5 py-0.5 text-gray-700 dark:text-gray-300">Zeitslot 1</span>
+                  <span class="px-1.5 py-0.5 text-gray-500 dark:text-gray-400">—</span>
+                  <span class="px-1.5 py-0.5 font-mono text-blue-600 dark:text-blue-400"
+                    >09:00 – 18:30 (30min)</span
+                  >
+                </div>
+                <div
+                  class="grid grid-cols-[1fr_0.7fr_1.1fr] border-t border-gray-200 dark:border-gray-700"
+                >
+                  <span class="px-1.5 py-0.5 text-gray-700 dark:text-gray-300">Gesamtstunden</span>
+                  <span class="px-1.5 py-0.5 text-gray-500 dark:text-gray-400">0 Std</span>
+                  <span class="px-1.5 py-0.5 font-mono text-blue-600 dark:text-blue-400">9 Std</span>
                 </div>
               </div>
-            </li>
-          ))}
-        </ul>
+              <p class="mt-1 text-right text-[9px] text-green-600 dark:text-green-400">
+                Nettoänderung: +9h (0h → 9h)
+              </p>
+            </div>
+
+            <!-- Holiday request -->
+            <div class="p-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <div class="flex items-center gap-2 min-w-0">
+                  <span
+                    class="w-6 h-6 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-[11px] flex-shrink-0"
+                    aria-hidden="true">🏖️</span
+                  >
+                  <div class="min-w-0">
+                    <p class="text-[11px] font-medium text-gray-900 dark:text-gray-100 truncate">
+                      Anna Schmidt
+                    </p>
+                    <p class="text-[9px] text-gray-500 dark:text-gray-400">
+                      Urlaubsantrag · Eingereicht 22. Sept.
+                    </p>
+                  </div>
+                </div>
+                <span
+                  class="flex-shrink-0 px-1.5 py-0.5 rounded-full text-[9px] font-medium bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300"
+                  >Ausstehend</span
+                >
+              </div>
+              <p class="mt-1.5 text-[9px] text-gray-600 dark:text-gray-400">
+                08.09. – 10.09.2026 · 3 Tage
+              </p>
+              <p class="text-[9px] text-gray-500 dark:text-gray-400 italic mt-0.5">
+                „Familienbesuch“
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Datenexport -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-lg shadow px-3.5 py-2.5 flex items-center gap-1.5 text-[11px] text-gray-700 dark:text-gray-300"
+        >
+          <svg
+            class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path d="M14 3v5h5M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V8l-6-5z"></path>
+          </svg>
+          Datenexport
+          <svg
+            class="w-3 h-3 ml-auto text-gray-400"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg
+          >
+        </div>
       </div>
     </div>
   </div>
