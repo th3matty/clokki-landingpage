@@ -1,7 +1,7 @@
 {
   "meta": {
     "indexTitle": "Clokki – Time tracking for German teams",
-    "indexDescription": "Time tracking, overtime and holidays. GDPR-compliant and built for German labor law. Made in Germany.",
+    "indexDescription": "Time tracking, overtime and holidays – with a working-time record at the click of a button. GDPR-compliant. Made in Germany.",
     "soonTitle": "Clokki – Coming soon",
     "soonDescription": "Clokki launches soon. Join the waitlist and be there from day one.",
     "pricingTitle": "Clokki – Pricing",
@@ -18,7 +18,7 @@
   },
   "hero": {
     "title": "Time tracking teams actually use.",
-    "subtitle": "Overtime, holidays and sick leave – GDPR-compliant and built for German labor law.",
+    "subtitle": "Overtime, holidays and sick leave – with a working-time record at the click of a button, GDPR-compliant.",
     "ctaPrimary": "Join the waitlist",
     "ctaSecondary": "See features",
     "trust": [
@@ -76,7 +76,7 @@
     "steps": [
       {
         "title": "Create your team",
-        "description": "Set up an account, pick your German state – public holidays and compliance are configured automatically."
+        "description": "Set up an account, pick your German state – its public holidays are filled in automatically."
       },
       {
         "title": "Invite members",
@@ -95,7 +95,7 @@
       "The statutory record as its own export: one employee, one sheet per calendar year – for the authority under §17(4) ArbZG",
       "Time beyond eight hours a day is shown per day and kept for two years (§16(2) ArbZG)",
       "Change log: who changed what and when, with the value before and after – deletions included",
-      "Optional 48-hour report across six months or 24 weeks – it shows the average, the judgement stays with you",
+      "Optional 48-hour report over the last 24 weeks – it shows the average, the judgement stays with you",
       "Departed employees: records are kept for two years, then deleted automatically",
       "All 16 German states and their public holidays",
       "Continued pay during illness (§3 EFZG)",
@@ -192,7 +192,7 @@
     }
   },
   "footer": {
-    "tagline": "Time tracking for German teams. Simple, compliant, transparent.",
+    "tagline": "Time tracking for German teams. Simple, traceable, transparent.",
     "columnProduct": "Product",
     "columnLegal": "Legal",
     "copyright": "Made with ♥ in Germany",
