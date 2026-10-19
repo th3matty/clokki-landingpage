@@ -1,7 +1,7 @@
 {
   "meta": {
     "indexTitle": "Clokki – Zeiterfassung für deutsche Teams",
-    "indexDescription": "Zeiterfassung, Überstunden und Urlaubsverwaltung. DSGVO-konform und kompatibel mit dem deutschen Arbeitsrecht. Made in Germany.",
+    "indexDescription": "Zeiterfassung, Überstunden und Urlaubsverwaltung – mit Arbeitszeitnachweis auf Knopfdruck. DSGVO-konform. Made in Germany.",
     "soonTitle": "Clokki – Bald verfügbar",
     "soonDescription": "Clokki startet in Kürze. Trag dich auf die Warteliste ein und sei von Anfang an dabei.",
     "pricingTitle": "Clokki – Preise",
@@ -18,7 +18,7 @@
   },
   "hero": {
     "title": "Zeiterfassung, die Teams wirklich nutzen.",
-    "subtitle": "Überstunden, Urlaub und Krankentage – DSGVO-konform und kompatibel mit dem deutschen Arbeitsrecht.",
+    "subtitle": "Überstunden, Urlaub und Krankentage – mit Arbeitszeitnachweis auf Knopfdruck, DSGVO-konform.",
     "ctaPrimary": "Auf die Warteliste setzen",
     "ctaSecondary": "Funktionen ansehen",
     "trust": [
@@ -76,7 +76,7 @@
     "steps": [
       {
         "title": "Team anlegen",
-        "description": "Account erstellen, Bundesland wählen – Feiertage und Compliance werden automatisch konfiguriert."
+        "description": "Account erstellen, Bundesland wählen – die gesetzlichen Feiertage deines Landes werden automatisch eingetragen."
       },
       {
         "title": "Mitglieder einladen",
@@ -95,7 +95,7 @@
       "Gesetzlicher Nachweis als eigener Export: ein Mitarbeiter, ein Blatt pro Kalenderjahr – für die Behörde nach §17 Abs. 4 ArbZG",
       "Zeiten über acht Stunden pro Tag werden je Tag ausgewiesen und zwei Jahre aufbewahrt (§16 Abs. 2 ArbZG)",
       "Änderungsprotokoll: wer wann was geändert hat, mit Wert davor und danach – Löschungen eingeschlossen",
-      "Zuschaltbarer 48-Stunden-Bericht über sechs Monate bzw. 24 Wochen – er zeigt den Durchschnitt, die Bewertung bleibt bei dir",
+      "Zuschaltbarer 48-Stunden-Bericht über die letzten 24 Wochen – er zeigt den Durchschnitt, die Bewertung bleibt bei dir",
       "Ausgeschiedene Mitarbeiter: Aufzeichnungen bleiben zwei Jahre erhalten und werden danach automatisch gelöscht",
       "Alle 16 Bundesländer & Feiertagsregelungen",
       "Lohnfortzahlung im Krankheitsfall (§3 EFZG)",
@@ -192,7 +192,7 @@
     }
   },
   "footer": {
-    "tagline": "Zeiterfassung für deutsche Teams. Einfach, konform, transparent.",
+    "tagline": "Zeiterfassung für deutsche Teams. Einfach, nachvollziehbar, transparent.",
     "columnProduct": "Produkt",
     "columnLegal": "Rechtliches",
     "copyright": "Made with ♥ in Germany",
